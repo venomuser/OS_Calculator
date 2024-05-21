@@ -35,6 +35,15 @@ namespace OS_Calculator.MVVM.Models
 			set { priority = value; }
 		}
 
+		private int processNumber;
+
+		public int ProcessNumber
+		{
+			get { return processNumber; }
+			set { processNumber = value; }
+		}
+
+
 
 	}
 }

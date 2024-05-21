@@ -10,29 +10,43 @@
             <converters:IndexConverter x:Key="IndexConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <VerticalStackLayout
+    <ScrollView>
+        <VerticalStackLayout
         BindableLayout.ItemsSource="{Binding Processes}"
         HorizontalOptions="Center"
         VerticalOptions="Center"
-        Spacing="20">
-        <Label 
+        Spacing="20" Padding="20">
+            <Label 
     Text="CPU Scheduling"
-            FontSize="Header"
-            FontFamily="Offside"/>
-        <BindableLayout.ItemTemplate>
+            FontSize="40" />
+            <BindableLayout.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout HorizontalOptions="Center"
                      VerticalOptions="Center"
                      Spacing="20">
-                    <Label Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type CollectionView}}}}" />
-                    <Entry Placeholder="Enter the burst time of the process" Text="{Binding ProcessUnits}"/>
-                    <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}"/>
-                    <Entry Placeholder="Enter the priority time of the process"  Text="{Binding Priority}"/>
-                </VerticalStackLayout>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Process" />
+                       <!-- <Label Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type ScrollView}}}}" /> -->
+                            <Label Text="{Binding ProcessNumber}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                            <Label Text="Burst Time:" FontSize="20"/>
+                            <Entry Placeholder="Enter the burst time of the process" Text="{Binding ProcessUnits}" WidthRequest="200"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                            <Label Text="Arrival Time:" FontSize="20"/>
+                            <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}" WidthRequest="200"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                            <Label Text="Priority:" FontSize="20"/>
+                            <Entry Placeholder="Enter the priority time of the process"  Text="{Binding Priority}" WidthRequest="200"/>
+                        </HorizontalStackLayout>
+                        <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                    </VerticalStackLayout>
                 
             </DataTemplate>
         </BindableLayout.ItemTemplate>
         
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
