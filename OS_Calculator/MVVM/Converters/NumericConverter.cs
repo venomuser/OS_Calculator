@@ -5,25 +5,26 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OS_Calculator.Extensions;
 
 namespace OS_Calculator.MVVM.Converters
 {
-    public class IndexConverter : IValueConverter
+    public class NumericConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-
-            var collection = parameter as IList;
-            if (collection != null && value != null)
-            {
-                return collection.IndexOf(value) + 1; // +1 if you want to start the index at 1
-            }
-            return null;
+            return value.ToInt();
+            
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return null;
+            if (value.ToInt() == null)
+            {
+                return 0;
+            }
+            else
+                return value.ToInt();
         }
     }
 }

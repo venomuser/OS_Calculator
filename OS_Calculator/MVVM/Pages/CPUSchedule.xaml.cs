@@ -15,4 +15,9 @@ public partial class CPUSchedule : ContentPage
     {
         return false;
     }
+
+    private void ButtonPrevious_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PopModalAsync();
+    }
 }

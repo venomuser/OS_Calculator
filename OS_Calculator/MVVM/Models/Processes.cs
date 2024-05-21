@@ -8,18 +8,18 @@ namespace OS_Calculator.MVVM.Models
 {
     public class Processes
     {
-		private int processUnits; // variable of burst time. It is amount of execution time
+		private int? processUnits; // variable of burst time. It is amount of execution time
 
-		public int ProcessUnits // property of burst time. It is amount of execution time
+		public int? ProcessUnits // property of burst time. It is amount of execution time
         {
 			get { return processUnits; }
 			set { processUnits = value; }
 		}
 
 		// when the processes arrives
-		private int arrivalTime;
+		private int? arrivalTime;
 
-		public int ArrivalTime
+		public int? ArrivalTime
 		{
 			get { return arrivalTime; }
 			set { arrivalTime = value; }
@@ -27,9 +27,9 @@ namespace OS_Calculator.MVVM.Models
 
 
 		//The priority of each process
-		private int priority;
+		private int? priority;
 
-		public int Priority
+		public int? Priority
 		{
 			get { return priority; }
 			set { priority = value; }

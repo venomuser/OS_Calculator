@@ -7,7 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:IndexConverter x:Key="IndexConverter" />
+            <converters:NumericConverter x:Key="NumericConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
@@ -33,15 +33,17 @@
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Label Text="Burst Time:" FontSize="20"/>
-                            <Entry Placeholder="Enter the burst time of the process" Text="{Binding ProcessUnits}" WidthRequest="200"/>
-                        </HorizontalStackLayout>
+                                <Entry Placeholder="Enter the burst time of the process" Text="{Binding ProcessUnits}" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange">
+                                    
+                                </Entry>
+                            </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Label Text="Arrival Time:" FontSize="20"/>
-                            <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}" WidthRequest="200"/>
+                                <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Label Text="Priority:" FontSize="20"/>
-                            <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" WidthRequest="200"/>
+                                <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                         </HorizontalStackLayout>
                         <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
                     </VerticalStackLayout>
@@ -50,6 +52,8 @@
         </BindableLayout.ItemTemplate>
         
     </VerticalStackLayout>
+            <Button Text="Next" Command="{Binding GoToMemoryDataCommand}"/>
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
