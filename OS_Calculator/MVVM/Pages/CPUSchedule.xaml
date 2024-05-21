@@ -2,17 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OS_Calculator.MVVM.Pages.CPUSchedule"
+             xmlns:converters="clr-namespace:OS_Calculator.MVVM.Converters"
              Title="CPUSchedule">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IndexConverter x:Key="IndexConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout
-        BindableLayout.ItemsSource="{Binding processes}">
+        BindableLayout.ItemsSource="{Binding Processes}"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="20">
+        <Label 
+    Text="CPU Scheduling"
+            FontSize="Header"
+            FontFamily="Offside"/>
         <BindableLayout.ItemTemplate>
             <DataTemplate>
+                <VerticalStackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="20">
+                    <Label Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type CollectionView}}}}" />
+                    <Entry Placeholder="Enter the burst time of the process" Text="{Binding ProcessUnits}"/>
+                    <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}"/>
+                    <Entry Placeholder="Enter the priority time of the process"  Text="{Binding Priority}"/>
+                </VerticalStackLayout>
                 
             </DataTemplate>
         </BindableLayout.ItemTemplate>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
     </VerticalStackLayout>
 </ContentPage>

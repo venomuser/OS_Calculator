@@ -4,11 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PropertyChanged;
 
 namespace OS_Calculator.MVVM.ViewModels
 {
-    internal class ProcessesViewModel
+    [AddINotifyPropertyChangedInterface]
+    public class ProcessesViewModel
     {
         public List<Processes> Processes { get; set; }
+
+        public ProcessesViewModel(ref List<Processes> processes)
+        {
+            Processes = processes;
+        }
     }
 }
