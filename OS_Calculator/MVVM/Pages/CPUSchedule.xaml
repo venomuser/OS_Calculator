@@ -11,23 +11,25 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="20" Padding="20">
+            <Label Text="CPU Scheduling" FontSize="Large" FontFamily="Offside"/>
+            <VerticalStackLayout
         BindableLayout.ItemsSource="{Binding Processes}"
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Spacing="20" Padding="20">
-            <Label 
-    Text="CPU Scheduling"
-            FontSize="40" />
+            
             <BindableLayout.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout HorizontalOptions="Center"
                      VerticalOptions="Center"
                      Spacing="20">
                         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label Text="Process" />
+                        <Label Text="Process" FontSize="20" />
                        <!-- <Label Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type ScrollView}}}}" /> -->
-                            <Label Text="{Binding ProcessNumber}" />
+                            <Label Text="{Binding ProcessNumber}" FontSize="20"/>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Label Text="Burst Time:" FontSize="20"/>
@@ -39,7 +41,7 @@
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Label Text="Priority:" FontSize="20"/>
-                            <Entry Placeholder="Enter the priority time of the process"  Text="{Binding Priority}" WidthRequest="200"/>
+                            <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" WidthRequest="200"/>
                         </HorizontalStackLayout>
                         <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
                     </VerticalStackLayout>
@@ -48,5 +50,6 @@
         </BindableLayout.ItemTemplate>
         
     </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
