@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OS_Calculator.Common.Extensions;
+using OS_Calculator.Extensions;
 
 namespace OS_Calculator.MVVM.Converters
 {
