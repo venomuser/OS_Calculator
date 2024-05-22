@@ -1,3 +1,4 @@
+using OS_Calculator.Common;
 using OS_Calculator.MVVM.Models;
 using OS_Calculator.MVVM.ViewModels;
 
@@ -19,5 +20,10 @@ public partial class CPUSchedule : ContentPage
     private void ButtonPrevious_Clicked(object sender, EventArgs e)
     {
         Navigation.PopModalAsync();
+    }
+
+    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        Common.Common.NumericEntryOnChange(sender, e);
     }
 }
