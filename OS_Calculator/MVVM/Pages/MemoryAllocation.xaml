@@ -7,7 +7,7 @@
         <VerticalStackLayout HorizontalOptions="Center"
                           VerticalOptions="Center"
                           Spacing="20" Padding="20">
-            <Label Text="Memory Allocation" FontSize="Large" FontFamily="Offside"/>
+            <Label Text="Memory Allocation" FontSize="Large" FontFamily="Offside" Margin="0,0,0,70"/>
             <VerticalStackLayout
      BindableLayout.ItemsSource="{Binding _Processes}"
      HorizontalOptions="Center"
@@ -18,15 +18,15 @@
                     <DataTemplate>
                         <VerticalStackLayout HorizontalOptions="Center"
                   VerticalOptions="Center"
-                  Spacing="20">
+                  Spacing="50">
                             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                                 <Label Text="Process" FontSize="20" />
-                                <!-- <Label Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type ScrollView}}}}" /> -->
+                 
                                 <Label Text="{Binding ProcessNumber}" FontSize="20"/>
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                                 <Label Text="Number Of Blocks:" FontSize="20"/>
-                                <Entry Placeholder="Enter the number of memory blocks of the process" Text="{Binding MemoryBlocks}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange">
+                                <Entry Placeholder="Enter the number of memory blocks of the process" Text="{Binding NumberOfBlocks}" TextChanged="Entry_TextChanged" WidthRequest="170" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange">
 
                                 </Entry>
                             </HorizontalStackLayout>
