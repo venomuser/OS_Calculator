@@ -26,7 +26,7 @@ namespace OS_Calculator.MVVM.ViewModels
                 if(proc.ArrivalTime <=0 || proc.ArrivalTime == null || proc.ProcessUnits <=0 || proc.ProcessUnits == null || proc.Priority <=0 || proc.Priority == null)
                 {
                     IsReady = false;
-                    App.Current.MainPage.DisplayAlert("Error", "The entries should not equal to or be smaller than 0 or should not be null or it should be just Integer type!","OK");
+                    App.Current.MainPage.DisplayAlert("Error", "The entries should not equal to or be smaller than 0 or should not be null or it should not be greater than 50 or it should be just Integer type!","OK");
                     break;
                 }
                 else if(proc.ArrivalTime > 50 || proc.ProcessUnits > 50 || proc.Priority > 100)

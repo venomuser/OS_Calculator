@@ -43,6 +43,17 @@ namespace OS_Calculator.MVVM.Models
 			set { processNumber = value; }
 		}
 
+		//Number of memory blocks
+
+		private int? numberOfBlocks;
+
+		public int? NumberOfBlocks
+		{
+			get { return numberOfBlocks; }
+			set { numberOfBlocks = value; }
+		}
+
+
 
 
 	}
