@@ -53,8 +53,8 @@ namespace OS_Calculator.MVVM.Models
 			set { numberOfBlocks = value; }
 		}
 
+        public List<int> BlockSizesMB { get; set; } = new List<int>(); // Sizes of each memory block
 
 
-
-	}
+    }
 }

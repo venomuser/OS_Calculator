@@ -36,6 +36,13 @@ namespace OS_Calculator.MVVM.ViewModels
             }
             if (IsReady)
             {
+                foreach (var proc in _Processes)
+                {
+                    for (int i = 0; i < proc.NumberOfBlocks; i++)
+                    {
+                        proc.BlockSizesMB.Add(0);
+                    }
+                }
                 App.Current.MainPage.Navigation.PushModalAsync(new MemoryAllocation2(_Processes));
             }
 

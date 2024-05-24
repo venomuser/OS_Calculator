@@ -3,10 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OS_Calculator.MVVM.Pages.MemoryAllocation2"
              Title="MemoryAllocation2">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="20" Padding="20">
+            <Label Text="Memory Allocation - Block Sizes" FontSize="Large" FontFamily="Offside" Margin="0,0,0,70"/>
+            <CollectionView ItemsSource="{Binding Processes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                                             VerticalOptions="Center"
+                                             Spacing="50">
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Process" FontSize="20" />
+                                <Label Text="{Binding ProcessNumber}" FontSize="20"/>
+                            </HorizontalStackLayout>
+                            <CollectionView ItemsSource="{Binding BlockSizesMB}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                                            <Label Text="Block Size (MB):" FontSize="20"/>
+                                            <Entry Placeholder="Enter the block size (MB)" Text="{Binding .}" Keyboard="Numeric" WidthRequest="170" FontSize="11" PlaceholderColor="Orange"/>
+                                        </HorizontalStackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Show Results" Command="{Binding GoToResultsCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
