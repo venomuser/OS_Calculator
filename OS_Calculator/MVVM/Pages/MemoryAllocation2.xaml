@@ -33,7 +33,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Show Results" Command="{Binding GoToResultsCommand}"/>
+            <Button Text="Show Results" Command="{Binding GoToMemorySizeCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
