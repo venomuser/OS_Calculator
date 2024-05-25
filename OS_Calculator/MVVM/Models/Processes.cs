@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,13 +50,16 @@ namespace OS_Calculator.MVVM.Models
 
 		private int? numberOfBlocks;
 
-		public int? NumberOfBlocks
+        
+
+        public int? NumberOfBlocks
 		{
 			get { return numberOfBlocks; }
 			set { numberOfBlocks = value; }
 		}
 
-        public List<int> BlockSizesMB { get; set; } = new List<int>(); // Sizes of each memory block
+        public ObservableCollection<double?> BlockSizesMB { get; set; } = new ObservableCollection<double?>(); // Sizes of each memory block
+
 
 
     }

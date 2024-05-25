@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OS_Calculator.MVVM.Pages.MemoryAllocation2"
              Title="MemoryAllocation2">
-    <ScrollView>
+    <ScrollView FlowDirection="LeftToRight">
         <VerticalStackLayout HorizontalOptions="Center"
                              VerticalOptions="Center"
                              Spacing="20" Padding="20">
@@ -23,7 +23,7 @@
                                     <DataTemplate>
                                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                                             <Label Text="Block Size (MB):" FontSize="20"/>
-                                            <Entry Placeholder="Enter the block size (MB)" Text="{Binding .}" Keyboard="Numeric" WidthRequest="170" FontSize="11" PlaceholderColor="Orange"/>
+                                            <Entry Placeholder="Enter the block size (MB)" Text="{Binding .}" TextChanged="Entry_TextChanged" Keyboard="Numeric" WidthRequest="170" FontSize="11" PlaceholderColor="Orange"/>
                                         </HorizontalStackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
@@ -33,7 +33,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Show Results" Command="{Binding GoToMemorySizeCommand}"/>
+            <Button Text="Next" Command="{Binding GoToMemorySizeCommand}"/>
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" />
+            <Button Text="First Page" Clicked="ButtonInit_Clicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

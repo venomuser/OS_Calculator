@@ -10,4 +10,20 @@ public partial class MemoryAllocation2 : ContentPage
 		InitializeComponent();
 		BindingContext = new MemoryAllocation2ViewModel(processes);
 	}
+
+    private void ButtonPrevious_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PopModalAsync();
+    }
+
+    private void ButtonInit_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new MainPage());
+    }
+
+    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        Common.Common.NumericEntryOnChange(sender, e);
+    }
+
 }

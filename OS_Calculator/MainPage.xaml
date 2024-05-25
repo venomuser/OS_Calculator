@@ -9,6 +9,7 @@
                  Padding="3"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
+                 FlowDirection="LeftToRight"
                  >
 
     <Entry Placeholder="Number of Processes" PlaceholderColor="Gray"
