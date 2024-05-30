@@ -41,8 +41,8 @@ namespace OS_Calculator
         {
             try
             {
-                if (Convert.ToInt32(txtProcessNumber.Text) > 50)
-                    DisplayAlert("Error", "Your process number is a lot! Maximum is 50 processes.", "OK");
+                if (Convert.ToInt32(txtProcessNumber.Text) > 15)
+                    DisplayAlert("Error", "Your process number is a lot! Maximum is 10 processes.", "OK");
                 else
                 {
 

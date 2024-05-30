@@ -33,8 +33,8 @@ namespace OS_Calculator.MVVM.ViewModels
                     if(ls > 2000 || ls <= 0 || ls == null)
                     {
                         IsReady = false;
-                        //App.Current.MainPage.DisplayAlert("Error", "Block Sizes cannot be greater than 2GB or be 0 or be null!","OK");
-                       // break;
+                        App.Current.MainPage.DisplayAlert("Error", "Block Sizes cannot be greater than 2GB or be 0 or be null!","OK");
+                        break;
                     }
                 }
                 if(!IsReady)
@@ -42,7 +42,7 @@ namespace OS_Calculator.MVVM.ViewModels
 
                 IsReady = true;
             }
-            IsReady = true;
+            //IsReady = true;
             if (IsReady)
             {
                 App.Current.MainPage.Navigation.PushModalAsync(new MemoryProperties(Processes));

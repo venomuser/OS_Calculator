@@ -22,14 +22,14 @@ namespace OS_Calculator.MVVM.ViewModels
 
         public ICommand NextCommand => new Command(nextCommand);
 
-        private void nextCommand(object obj)
+        private void nextCommand()
         {
             foreach (var proc in _Processes)
             {
-                if (proc.NumberOfBlocks  == null || proc.NumberOfBlocks < 1 || proc.NumberOfBlocks > 50)
+                if (proc.NumberOfBlocks  == null || proc.NumberOfBlocks < 1 || proc.NumberOfBlocks > 10)
                 {
                     IsReady = false;
-                    App.Current.MainPage.DisplayAlert("Error", "Maximum memory blocks that you can enter is 50, and minimum is 1! Also it cannot be null!", "OK");
+                    App.Current.MainPage.DisplayAlert("Error", "Maximum memory blocks that you can enter is 10, and minimum is 1! Also it cannot be null!", "OK");
                     break;
                 }
                 IsReady = true;
