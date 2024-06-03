@@ -8,8 +8,8 @@
                              VerticalOptions="Center"
                              Spacing="20" Padding="20">
             <Label Text="Memory Allocation - Block Sizes" FontSize="Large" FontFamily="Offside" Margin="0,0,0,70"/>
-            <CollectionView ItemsSource="{Binding Processes}">
-                <CollectionView.ItemTemplate>
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Processes}">
+                <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <VerticalStackLayout HorizontalOptions="Center"
                                              VerticalOptions="Center"
@@ -18,24 +18,25 @@
                                 <Label Text="Process" FontSize="20" />
                                 <Label Text="{Binding ProcessNumber}" FontSize="20"/>
                             </HorizontalStackLayout>
-                            <CollectionView ItemsSource="{Binding BlockSizesMB}">
-                                <CollectionView.ItemTemplate>
+                            <VerticalStackLayout BindableLayout.ItemsSource="{Binding BlockSizesMB}">
+                                <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                                             <Label Text="Block Size (MB):" FontSize="20"/>
                                             <Entry Placeholder="Enter the block size (MB)" Text="{Binding .}" TextChanged="Entry_TextChanged" Keyboard="Numeric" WidthRequest="170" FontSize="11" PlaceholderColor="Orange"/>
                                         </HorizontalStackLayout>
                                     </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                                </BindableLayout.ItemTemplate>
+                            </VerticalStackLayout>
                             <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
                         </VerticalStackLayout>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Text="Next" Command="{Binding GoToMemorySizeCommand}"/>
-            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" />
-            <Button Text="First Page" Clicked="ButtonInit_Clicked" />
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <!--<Button Text="Next" Command="{Binding GoToMemorySizeCommand}" WidthRequest="200"/> -->
+            <Button x:Name="btnNext" Text="Next" WidthRequest="200" Clicked="btnNext_Clicked" />
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" WidthRequest="200"/>
+            <Button Text="First Page" Clicked="ButtonInit_Clicked" WidthRequest="200"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

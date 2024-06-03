@@ -58,7 +58,7 @@ namespace OS_Calculator.MVVM.Models
 			set { numberOfBlocks = value; }
 		}
 
-        public ObservableCollection<double?> BlockSizesMB { get; set; } = new ObservableCollection<double?>(); // Sizes of each memory block
+        public List<double?> BlockSizesMB { get; set; } = new List<double?>(); // Sizes of each memory block
 
 
 
