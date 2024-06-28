@@ -7,8 +7,9 @@
         VerticalOptions="Center"
         HorizontalOptions="Center"
         WidthRequest="500"
-        HeightRequest="500"
-        BackgroundColor="Transparent">
+        HeightRequest="500">
+        
+        
           <Border Padding="20" 
 
             Stroke="Transparent"
