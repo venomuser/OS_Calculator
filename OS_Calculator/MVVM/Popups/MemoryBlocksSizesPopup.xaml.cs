@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using OS_Calculator.MVVM.Models;
 
@@ -5,10 +6,10 @@ namespace OS_Calculator.MVVM.Popups;
 
 public partial class MemoryBlocksSizesPopup : Popup
 {
-	public MemoryBlocksSizesPopup(Memory memory, List<Processes> processes)
-	{
-		InitializeComponent();
-		Memory _memory = memory;
+    public MemoryBlocksSizesPopup(Memory memory, List<Processes> processes)
+    {
+        InitializeComponent();
+        Memory _memory = memory;
 
 
         // Initialize number of Entries in the popup
@@ -18,6 +19,6 @@ public partial class MemoryBlocksSizesPopup : Popup
 
     private void ButtonResult_Clicked(object sender, EventArgs e)
     {
-
+        
     }
 }

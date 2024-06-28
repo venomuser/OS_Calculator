@@ -36,6 +36,7 @@ namespace OS_Calculator.MVVM.ViewModels
             }
             else
             {
+                memory.BlockStorage.Clear();
                 for(int i=0; i<memory.MemoryBlocks; i++)
                 {
                     memory.BlockStorage.Add(0);
