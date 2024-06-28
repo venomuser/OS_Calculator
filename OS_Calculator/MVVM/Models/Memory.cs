@@ -25,7 +25,7 @@ namespace OS_Calculator.MVVM.Models
 		}
 
 		public bool IsEnabled { get; set; }
-		public List<double> BlockStorage { get; set; } = new List<double>();
+		public List<double?> BlockStorage { get; set; } = new List<double?>();
 
 
 	}

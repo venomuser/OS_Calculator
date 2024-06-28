@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Core;
 using OS_Calculator.MVVM.Models;
 using OS_Calculator.MVVM.ViewModels;
 
@@ -8,6 +9,7 @@ public partial class MemoryProperties : ContentPage
 	public MemoryProperties(List<Processes> processes)
 	{
 		InitializeComponent();
+		
 		BindingContext = new MemoryPropertiesViewModel(processes);
 	}
 }

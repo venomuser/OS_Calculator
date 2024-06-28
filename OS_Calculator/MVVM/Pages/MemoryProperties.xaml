@@ -4,10 +4,9 @@
              xmlns:behaviors="clr-namespace:OS_Calculator.Common"
              xmlns:vm="clr-namespace:OS_Calculator.MVVM.ViewModels"
              x:Class="OS_Calculator.MVVM.Pages.MemoryProperties"
-             Title="MemoryProperties">
-    <ContentPage.BindingContext>
-        <vm:MemoryPropertiesViewModel/>
-    </ContentPage.BindingContext>
+             Title="MemoryProperties"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
 
     <VerticalStackLayout HorizontalOptions="Center"
                          VerticalOptions="Center"
@@ -16,32 +15,18 @@
         <Label Text="Memory Properties" FontSize="Large" FontFamily="Offside" Margin="0,0,0,70"/>
 
         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50">
-            <Label Text="Memory Storage Size:" FontSize="15"/>
-            <Entry Text="{Binding memory.MemorySize}" Placeholder="Set the memory storage size" FontSize="10" PlaceholderColor="Blue"/>
+            <Label Text="Memory Storage Size (MB):" FontSize="15"/>
+            <Entry Text="{Binding memory.MemorySize}" Placeholder="Set the memory storage size (MB)" FontSize="10" PlaceholderColor="Blue" WidthRequest="100"/>
         </HorizontalStackLayout>
 
         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50">
             <Label Text="Memory Blocks Number:" FontSize="15"/>
             <Entry Text="{Binding memory.MemoryBlocks}" Placeholder="Set the memory blocks number" FontSize="10" Keyboard="Numeric" PlaceholderColor="Blue">
-                <Entry.Behaviors>
-                    <behaviors:TextChangedBehavior Command="{Binding BlockNumberChangedCommand}" />
-                </Entry.Behaviors>
+                
             </Entry>
         </HorizontalStackLayout>
 
-        <CollectionView ItemsSource="{Binding BlockSizes}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                        <Label Text="Block Size:" FontSize="15"/>
-                        <Entry Text="{Binding .}" Placeholder="Enter the block size" Keyboard="Numeric" FontSize="10" PlaceholderColor="Blue">
-                            <Entry.Behaviors>
-                                <behaviors:TextChangedBehavior Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MemoryPropertiesViewModel}}, Path=BlockSizeChangedCommand}" />
-                            </Entry.Behaviors>
-                        </Entry>
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+       
+        <Button Text="OK" Command="{Binding btnOK}" WidthRequest="50"/>
     </VerticalStackLayout>
 </ContentPage>

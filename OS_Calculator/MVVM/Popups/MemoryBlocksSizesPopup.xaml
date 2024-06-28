@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OS_Calculator.MVVM.Popups.MemoryBlocksSizesPopup"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <VerticalStackLayout BackgroundColor="Gold"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
+        <Label Text="RAM Blocks Sizes" FontSize="Large" FontFamily="Offside" />
+        <!-- Entry Controls-->
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding _memory.BlockStorage}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="Block Storage (MB):"/>
+                        <Entry Text="{Binding .}" WidthRequest="200"></Entry>
+                    </HorizontalStackLayout>
+                    
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+        <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked"/>
+    </VerticalStackLayout>
+</toolkit:Popup>

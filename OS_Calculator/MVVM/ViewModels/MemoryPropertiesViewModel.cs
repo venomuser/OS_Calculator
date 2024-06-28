@@ -1,4 +1,7 @@
-﻿using OS_Calculator.MVVM.Models;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Views;
+using OS_Calculator.MVVM.Models;
+using OS_Calculator.MVVM.Popups;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -16,42 +19,44 @@ namespace OS_Calculator.MVVM.ViewModels
         public List<Processes> _Processes {  get; set; }
         public Memory memory { get; set; }
         public ObservableCollection<int> BlockSizes { get; set; }
+        
 
-        public ICommand BlockNumberChangedCommand { get; }
-        public ICommand BlockSizeChangedCommand { get; }
+       
+        public ICommand btnOK => new Command(OK_Pressed);
+
+        private void OK_Pressed(object obj)
+        {
+            if (memory.MemorySize > 500000 || memory.MemorySize < 5 || string.IsNullOrEmpty(memory.MemorySize.ToString()))
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Memory size should not be greater than 500 GB or Smaller than 5 MB or null!", "OK");
+            }
+            else if (memory.MemoryBlocks < 1 || string.IsNullOrEmpty(memory.MemoryBlocks.ToString()) || memory.MemoryBlocks > 50)
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Number of RAM blocks should not be greater than 50 or smaller than 1 or null!", "OK");
+            }
+            else
+            {
+                for(int i=0; i<memory.MemoryBlocks; i++)
+                {
+                    memory.BlockStorage.Add(0);
+                    
+                }
+                App.Current.MainPage.ShowPopup(new MemoryBlocksSizesPopup(memory, _Processes));
+            }
+        }
+
         public MemoryPropertiesViewModel(List<Processes> processes)
         {
             _Processes = processes;
              memory = new Memory();
             memory.IsEnabled = false;
-            BlockNumberChangedCommand = new Command<string>(OnBlockNumberChanged);
-            BlockSizeChangedCommand = new Command<string>(OnBlockSizeChanged);
+            
+            
         }
 
-        public MemoryPropertiesViewModel()
-        {
-            memory = new Memory();
-            memory.IsEnabled = false;
-            BlockNumberChangedCommand = new Command<string>(OnBlockNumberChanged);
-            BlockSizeChangedCommand = new Command<string>(OnBlockSizeChanged);
-        }
+       
 
-        private void OnBlockNumberChanged(string newBlockNumber)
-        {
-            if (int.TryParse(newBlockNumber, out int numberOfBlocks))
-            {
-                BlockSizes.Clear();
-                for (int i = 0; i < numberOfBlocks; i++)
-                {
-                    BlockSizes.Add(0);
-                }
-            }
-        }
-
-        private void OnBlockSizeChanged(string newSize)
-        {
-            // Handle block size changes if necessary
-        }
+       
     }
 }
 
