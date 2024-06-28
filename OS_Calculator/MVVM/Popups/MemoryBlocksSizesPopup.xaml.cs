@@ -10,10 +10,11 @@ public partial class MemoryBlocksSizesPopup : Popup
 		InitializeComponent();
 		Memory _memory = memory;
 
-	    // Initialize number of Entries in the popup
+
+        // Initialize number of Entries in the popup
 
 
-	}
+    }
 
     private void ButtonResult_Clicked(object sender, EventArgs e)
     {

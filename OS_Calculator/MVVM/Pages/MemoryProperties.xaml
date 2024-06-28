@@ -28,5 +28,6 @@
 
        
         <Button Text="OK" Command="{Binding btnOK}" WidthRequest="50"/>
+        
     </VerticalStackLayout>
 </ContentPage>

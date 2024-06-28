@@ -19,8 +19,8 @@ namespace OS_Calculator.MVVM.ViewModels
         public List<Processes> _Processes {  get; set; }
         public Memory memory { get; set; }
         public ObservableCollection<int> BlockSizes { get; set; }
-        
 
+        private Page page;
        
         public ICommand btnOK => new Command(OK_Pressed);
 
@@ -41,12 +41,17 @@ namespace OS_Calculator.MVVM.ViewModels
                     memory.BlockStorage.Add(0);
                     
                 }
-                App.Current.MainPage.ShowPopup(new MemoryBlocksSizesPopup(memory, _Processes));
+
+                
+
+                page.ShowPopup(new MemoryBlocksSizesPopup(memory, _Processes));
+                
             }
         }
 
-        public MemoryPropertiesViewModel(List<Processes> processes)
+        public MemoryPropertiesViewModel(Page pg, List<Processes> processes)
         {
+            page = pg;
             _Processes = processes;
              memory = new Memory();
             memory.IsEnabled = false;

@@ -17,7 +17,7 @@ namespace OS_Calculator
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Offside-Regular.ttf", "Offside");
                 });
-           
+            
 
 
 #if DEBUG
