@@ -34,8 +34,11 @@
         </VerticalStackLayout>
 
                 <Label Text="" TextColor="Red" FontSize="Small" IsVisible="False" x:Name="lblError"/>
+                <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
                 <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked" x:Name="btnResult"/>
-    </VerticalStackLayout>
+                 <Button Text="Cancel" WidthRequest="100" x:Name="btnCancel" Clicked="btnCancel_Clicked"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
         </Border>
     </ScrollView>
 

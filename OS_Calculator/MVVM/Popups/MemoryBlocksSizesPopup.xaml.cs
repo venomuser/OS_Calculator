@@ -2,6 +2,7 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 
 using OS_Calculator.MVVM.Models;
+using OS_Calculator.MVVM.Pages;
 
 namespace OS_Calculator.MVVM.Popups;
 
@@ -56,7 +57,7 @@ public partial class MemoryBlocksSizesPopup : Popup
                 _memory.BlockStorage.Add(item);
             }
             Close();
-           // App.Current.MainPage.Navigation.PushModalAsync(new MainPage());
+           App.Current.MainPage.Navigation.PushModalAsync(new ResultPage());
         Finish:;
            
         }
@@ -92,5 +93,10 @@ public partial class MemoryBlocksSizesPopup : Popup
         {
             btnResult.IsEnabled = false;
         }
+    }
+
+    private void btnCancel_Clicked(object sender, EventArgs e)
+    {
+        Close();
     }
 }
