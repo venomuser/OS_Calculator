@@ -44,7 +44,7 @@
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 		<DefaultLanguage>en</DefaultLanguage>
-		<PackageCertificateThumbprint>9350AFA7D980BB5657F478F8D3A5EA1F84C9F62D</PackageCertificateThumbprint>
+		<PackageCertificateThumbprint>ABF8FCAEEC539C0739AA7C905FBC7A401607125B</PackageCertificateThumbprint>
 	</PropertyGroup>
 
 	<ItemGroup>

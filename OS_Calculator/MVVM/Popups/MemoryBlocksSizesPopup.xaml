@@ -26,15 +26,15 @@
                 <DataTemplate>
                     <HorizontalStackLayout>
                         <Label Text="Block Storage (MB):"/>
-                        <Entry Text="{Binding .}" WidthRequest="200" BackgroundColor="White"/>
+                        <Entry Text="{Binding .}" WidthRequest="200" BackgroundColor="White" TextChanged="OnNumericEntryChanged" Keyboard="Numeric"/>
                     </HorizontalStackLayout>
                     
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
-        
 
-        <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked"/>
+                <Label Text="" TextColor="Red" FontSize="Small" IsVisible="False" x:Name="lblError"/>
+                <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked" x:Name="btnResult"/>
     </VerticalStackLayout>
         </Border>
     </ScrollView>
