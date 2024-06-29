@@ -10,7 +10,7 @@
             <converters:NumericConverter x:Key="NumericConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
+    <ScrollView FlowDirection="LeftToRight">
         <VerticalStackLayout HorizontalOptions="Center"
                              VerticalOptions="Center"
                              Spacing="20" Padding="20">

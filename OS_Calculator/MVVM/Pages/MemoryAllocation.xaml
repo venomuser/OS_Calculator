@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OS_Calculator.MVVM.Pages.MemoryAllocation"
              Title="MemoryAllocation">
-    <ScrollView>
+    <ScrollView FlowDirection="LeftToRight">
         <VerticalStackLayout HorizontalOptions="Center"
                           VerticalOptions="Center"
                           Spacing="20" Padding="20">
@@ -18,15 +18,15 @@
                     <DataTemplate>
                         <VerticalStackLayout HorizontalOptions="Center"
                   VerticalOptions="Center"
-                  Spacing="50">
+                  Spacing="50" Margin="-30,0,0,0">
                             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                                 <Label Text="Process" FontSize="20" />
                  
                                 <Label Text="{Binding ProcessNumber}" FontSize="20"/>
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                                <Label Text="Number Of Blocks:" FontSize="20"/>
-                                <Entry Placeholder="Enter the number of memory blocks of the process" Text="{Binding NumberOfBlocks}" TextChanged="Entry_TextChanged" WidthRequest="170" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange">
+                                <Label Text="Number Of Blocks (Process):" FontSize="13"/>
+                                <Entry Placeholder="Enter the number of memory blocks" Text="{Binding NumberOfBlocks}" TextChanged="Entry_TextChanged" WidthRequest="160" FontSize="9" Keyboard="Numeric" PlaceholderColor="Orange">
 
                                 </Entry>
                             </HorizontalStackLayout>

@@ -1,0 +1,102 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
+
+using OS_Calculator.MVVM.Models;
+using OS_Calculator.MVVM.Pages;
+
+namespace OS_Calculator.MVVM.Popups;
+
+public partial class MemoryBlocksSizesPopup : Popup
+{
+    Memory _memory { get; set; }
+    public MemoryBlocksSizesPopup(Memory memory, List<Processes> processes)
+    {
+        InitializeComponent();
+        _memory = memory;
+        btnResult.IsEnabled = false;
+
+        // Initialize number of Entries in the popup
+
+
+    }
+
+    private void ButtonResult_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+           
+           
+            List<double?> entryValues = new List<double?>();
+           
+
+
+
+            foreach (var view in this.GetVisualTreeDescendants())
+            {
+                if (view is Entry entry)
+                {
+                    if (Convert.ToDouble(entry.Text) <= 0 || Convert.ToDouble(entry.Text) > 10000)
+                    {
+                        lblError.Text = "Error! You should input valid value to the entries!";
+                        lblError.IsVisible = true;
+                        goto Finish;
+                        
+                    }
+                    else
+                    {
+                        entryValues.Add(Convert.ToDouble(entry.Text));
+                    }
+
+
+                }
+            }
+            // -------------------------- adding to the list ----------------------------------------
+            _memory.BlockStorage.Clear();
+            foreach (var item in entryValues)
+            {     
+                _memory.BlockStorage.Add(item);
+            }
+            Close();
+           App.Current.MainPage.Navigation.PushModalAsync(new ResultPage());
+        Finish:;
+           
+        }
+        catch (Exception)
+        {
+            lblError.Text = "Error! You should input valid value to the entries!";
+            lblError.IsVisible = true;
+        }
+    }
+
+    private void OnNumericEntryChanged(object sender, TextChangedEventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+        {
+            // Ensure each character is a digit
+            bool isValid = e.NewTextValue.All(char.IsDigit);
+
+            if (!isValid)
+            {
+                // Revert to the old value if new input is not valid
+                ((Entry)sender).Text = e.OldTextValue;
+            }
+           
+            else
+            {
+                btnResult.IsEnabled = true;
+            }
+
+        }
+
+       
+        else
+        {
+            btnResult.IsEnabled = false;
+        }
+    }
+
+    private void btnCancel_Clicked(object sender, EventArgs e)
+    {
+        Close();
+    }
+}

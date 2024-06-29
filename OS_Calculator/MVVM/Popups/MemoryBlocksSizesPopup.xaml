@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OS_Calculator.MVVM.Popups.MemoryBlocksSizesPopup"
+       xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui">
+    <ScrollView  
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        WidthRequest="500"
+        HeightRequest="500">
+        
+        
+          <Border Padding="20" 
+
+            Stroke="Transparent"
+            BackgroundColor="Gold">
+              <Border.StrokeShape>
+                  <RoundRectangle CornerRadius="28"/>
+              </Border.StrokeShape>
+              <VerticalStackLayout BackgroundColor="Gold" Spacing="50">
+            
+                <Label Text="RAM Blocks Sizes" FontSize="Large" FontFamily="Offside" />
+        <!-- Entry Controls-->
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding memory.BlockStorage}" Spacing="20">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="Block Storage (MB):"/>
+                        <Entry Text="{Binding .}" WidthRequest="200" BackgroundColor="White" TextChanged="OnNumericEntryChanged" Keyboard="Numeric"/>
+                    </HorizontalStackLayout>
+                    
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+                <Label Text="" TextColor="Red" FontSize="Small" IsVisible="False" x:Name="lblError"/>
+                <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked" x:Name="btnResult"/>
+                 <Button Text="Cancel" WidthRequest="100" x:Name="btnCancel" Clicked="btnCancel_Clicked"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </ScrollView>
+
+</mct:Popup>

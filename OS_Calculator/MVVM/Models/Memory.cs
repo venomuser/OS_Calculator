@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace OS_Calculator.MVVM.Models
 {
-    public class MemoryAllocationModel
+    public class Memory
     {
+		private int memorySize;
+
+		public int MemorySize
+		{
+			get { return memorySize; }
+			set { memorySize = value; }
+		}
+
 		private int memoryBlocks;
 
 		public int MemoryBlocks
@@ -16,7 +24,9 @@ namespace OS_Calculator.MVVM.Models
 			set { memoryBlocks = value; }
 		}
 
-		
+		public bool IsEnabled { get; set; }
+		public List<double?> BlockStorage { get; set; } = new List<double?>();
+
 
 	}
 }
