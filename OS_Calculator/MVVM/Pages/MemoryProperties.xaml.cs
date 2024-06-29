@@ -20,4 +20,9 @@ public partial class MemoryProperties : ContentPage
 		
 		BindingContext = new MemoryPropertiesViewModel(page,processes);
 	}
+
+    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        Common.Common.NumericEntryOnChange(sender, e);
+    }
 }

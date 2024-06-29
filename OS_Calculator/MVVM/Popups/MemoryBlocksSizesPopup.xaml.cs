@@ -55,6 +55,8 @@ public partial class MemoryBlocksSizesPopup : Popup
             {     
                 _memory.BlockStorage.Add(item);
             }
+            Close();
+           // App.Current.MainPage.Navigation.PushModalAsync(new MainPage());
         Finish:;
            
         }

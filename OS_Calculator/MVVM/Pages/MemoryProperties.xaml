@@ -16,12 +16,12 @@
 
         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50">
             <Label Text="Memory Storage Size (MB):" FontSize="15"/>
-            <Entry Text="{Binding memory.MemorySize}" Placeholder="Set the memory storage size (MB)" FontSize="10" PlaceholderColor="Blue" WidthRequest="100"/>
+            <Entry Text="{Binding memory.MemorySize}" Placeholder="Set the memory storage size (MB)" FontSize="10" PlaceholderColor="Blue" WidthRequest="100" Keyboard="Numeric" TextChanged="Entry_TextChanged"/>
         </HorizontalStackLayout>
 
         <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50">
             <Label Text="Memory Blocks Number:" FontSize="15"/>
-            <Entry Text="{Binding memory.MemoryBlocks}" Placeholder="Set the memory blocks number" FontSize="10" Keyboard="Numeric" PlaceholderColor="Blue">
+            <Entry Text="{Binding memory.MemoryBlocks}" Placeholder="Set the memory blocks number" FontSize="10" Keyboard="Numeric" PlaceholderColor="Blue" TextChanged="Entry_TextChanged">
                 
             </Entry>
         </HorizontalStackLayout>
