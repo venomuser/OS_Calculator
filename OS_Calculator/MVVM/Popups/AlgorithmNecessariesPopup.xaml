@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OS_Calculator.MVVM.Popups.AlgorithmNecessaries"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           CanBeDismissedByTappingOutsideOfPopup="False">
+    <Border Padding="20" 
+Stroke="Transparent"
+BackgroundColor="Gold">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="28"/>
+        </Border.StrokeShape>
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50" WidthRequest="500" HeightRequest="500" BackgroundColor="Gold">
+        
+            <Label 
+            Text="Algorithm necessaries"
+             FontFamily="Offside" FontSize="Large" />
+            <Entry Placeholder="Round Robin Quantom" WidthRequest="200" x:Name="rrEntry" TextChanged="rrEntry_TextChanged" BackgroundColor="White"/>
+            <Label Text="" TextColor="Red" IsVisible="False" x:Name="lblError"/>
+            <Button BackgroundColor="Red" WidthRequest="100" Text="Enter" Clicked="Button_Clicked" />
+        
+    </VerticalStackLayout>
+    </Border>
+</mct:Popup>

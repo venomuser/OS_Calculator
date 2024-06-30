@@ -38,9 +38,9 @@
                 </BindableLayout.ItemTemplate>
 
             </VerticalStackLayout>
-            <Button Text="Next" Command="{Binding NextCommand}"/>
-            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" />
-            <Button Text="First Page" Clicked="ButtonRoot_Clicked" />
+            <Button Text="Next" Command="{Binding NextCommand}" BackgroundColor="Red"/>
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" BackgroundColor="Red"/>
+            <Button Text="First Page" Clicked="ButtonRoot_Clicked" BackgroundColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -34,9 +34,9 @@
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
             <!--<Button Text="Next" Command="{Binding GoToMemorySizeCommand}" WidthRequest="200"/> -->
-            <Button x:Name="btnNext" Text="Next" WidthRequest="200" Clicked="btnNext_Clicked" />
-            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" WidthRequest="200"/>
-            <Button Text="First Page" Clicked="ButtonInit_Clicked" WidthRequest="200"/>
+            <Button x:Name="btnNext" Text="Next" WidthRequest="200" Clicked="btnNext_Clicked" BackgroundColor="Red"/>
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" WidthRequest="200" BackgroundColor="Red"/>
+            <Button Text="First Page" Clicked="ButtonInit_Clicked" WidthRequest="200" BackgroundColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

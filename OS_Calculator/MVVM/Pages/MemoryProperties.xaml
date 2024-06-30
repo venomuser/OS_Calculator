@@ -26,8 +26,10 @@
             </Entry>
         </HorizontalStackLayout>
 
-       
-        <Button Text="OK" Command="{Binding btnOK}" WidthRequest="50"/>
+
+        <Button Text="OK" Command="{Binding btnOK}" WidthRequest="50" Margin="0,0,0,100" BackgroundColor="Red"/>
+        <Button Text="Previous" Command="{Binding btnBack}" WidthRequest="200" BackgroundColor="Red"/>
+        <Button Text="First Page" Command="{Binding btnRoot}" WidthRequest="200" BackgroundColor="Red"/>
         
     </VerticalStackLayout>
 </ContentPage>

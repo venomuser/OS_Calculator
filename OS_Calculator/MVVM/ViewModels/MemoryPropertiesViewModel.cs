@@ -24,6 +24,20 @@ namespace OS_Calculator.MVVM.ViewModels
        
         public ICommand btnOK => new Command(OK_Pressed);
 
+        public ICommand btnBack => new Command(Back_Pressed);
+
+        public ICommand btnRoot => new Command(Root_Pressed);
+
+        private void Root_Pressed(object obj)
+        {
+            App.Current.MainPage = new NavigationPage(new MainPage());
+        }
+
+        private void Back_Pressed(object obj)
+        {
+            App.Current.MainPage.Navigation.PopModalAsync();
+        }
+
         private void OK_Pressed(object obj)
         {
             if (memory.MemorySize > 500000 || memory.MemorySize < 5 || string.IsNullOrEmpty(memory.MemorySize.ToString()))

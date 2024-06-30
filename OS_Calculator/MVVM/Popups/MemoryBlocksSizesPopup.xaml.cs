@@ -9,10 +9,13 @@ namespace OS_Calculator.MVVM.Popups;
 public partial class MemoryBlocksSizesPopup : Popup
 {
     Memory _memory { get; set; }
+    List<Processes> Processes { get; set; }
+   
     public MemoryBlocksSizesPopup(Memory memory, List<Processes> processes)
     {
         InitializeComponent();
         _memory = memory;
+        Processes = processes;
         btnResult.IsEnabled = false;
 
         // Initialize number of Entries in the popup
@@ -57,13 +60,16 @@ public partial class MemoryBlocksSizesPopup : Popup
                 _memory.BlockStorage.Add(item);
             }
             Close();
-           App.Current.MainPage.Navigation.PushModalAsync(new ResultPage());
+            
+            App.Current.MainPage = new NavigationPage(new ResultPage(Processes));
+        //App.Current.MainPage.Navigation.PushModalAsync(new ResultPage(Processes));
+
         Finish:;
            
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            lblError.Text = "Error! You should input valid value to the entries!";
+            lblError.Text = ex.Message;
             lblError.IsVisible = true;
         }
     }

@@ -44,7 +44,7 @@
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 		<DefaultLanguage>en</DefaultLanguage>
-		<PackageCertificateThumbprint>ABF8FCAEEC539C0739AA7C905FBC7A401607125B</PackageCertificateThumbprint>
+		<PackageCertificateThumbprint>890DB803F968675325293B88C2797EA2F7C07DC8</PackageCertificateThumbprint>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -79,6 +79,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="MVVM\Popups\AlgorithmNecessariesPopup.xaml.cs">
+	    <DependentUpon>AlgorithmNecessariesPopup.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="MVVM\Pages\CPUSchedule.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -92,6 +98,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Pages\ResultPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Popups\AlgorithmNecessariesPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Popups\MemoryBlocksSizesPopup.xaml">

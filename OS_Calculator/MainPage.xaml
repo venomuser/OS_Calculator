@@ -22,7 +22,7 @@
             x:Name="btnCPUpage"
             Text="Next"
             WidthRequest="200"
-            Clicked="btnCPUpage_Clicked"/>
+            Clicked="btnCPUpage_Clicked" BackgroundColor="Red"/>
     </StackLayout>
 
 </ContentPage>

@@ -52,8 +52,8 @@
         </BindableLayout.ItemTemplate>
         
     </VerticalStackLayout>
-            <Button Text="Next" Command="{Binding GoToMemoryDataCommand}"/>
-            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" />
+            <Button Text="Next" Command="{Binding GoToMemoryDataCommand}" BackgroundColor="Red"/>
+            <Button Text="Previous" Clicked="ButtonPrevious_Clicked" BackgroundColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
