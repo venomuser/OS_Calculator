@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using OS_Calculator.Common;
 using OS_Calculator.MVVM.Models;
 using OS_Calculator.MVVM.Popups;
 using OS_Calculator.MVVM.ViewModels;
@@ -14,8 +15,46 @@ public partial class ResultPage : TabbedPage
     {
         _processes = processes;
         InitializeComponent();
-        this.ShowPopup(new AlgorithmNecessaries(this));
-        
+        if (CustomizationController.RoundRobin == true)
+        {
+            this.ShowPopup(new AlgorithmNecessaries(this));
+        }
+        if (CustomizationController.FCFS == false)
+        {
+            FCFSdataGrid.IsVisible = false;
+            FCFSdataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.RoundRobin == false)
+        {
+            RRdataGrid.IsVisible = false;
+            RRdataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.SJF == false)
+        {
+            SJFdataGrid.IsVisible = false;
+            SJFdataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.SRT == false)
+        {
+            SRTdataGrid.IsVisible = false;
+            SRTdataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.HRRN == false)
+        {
+            HRRNdataGrid.IsVisible = false;
+            HRRNdataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.Priority == false)
+        {
+            PrioritydataGrid.IsVisible = false;
+            PrioritydataGrid.IsEnabled = false;
+        }
+        if (CustomizationController.Lottery == false)
+        {
+            LotterydataGrid.IsVisible = false;
+            LotterydataGrid.IsEnabled = false;
+        }
+
 
     }
 
@@ -28,5 +67,10 @@ public partial class ResultPage : TabbedPage
     {
            
             BindingContext = new OperationsViewModel(QuantomTime, _processes);
+    }
+
+    private void HomeButton_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new FirstPage());
     }
 }

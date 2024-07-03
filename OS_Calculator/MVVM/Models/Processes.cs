@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OS_Calculator.Common;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -82,7 +83,8 @@ namespace OS_Calculator.MVVM.Models
 		}
 
 		public string ProcessName { get => "P" + processNumber; }
-
+		public bool IsPriority { get; } = CustomizationController.Priority;
+		public bool IsLottery { get; } = CustomizationController.Lottery;
 
 	}
 }

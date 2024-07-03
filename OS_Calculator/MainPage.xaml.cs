@@ -1,4 +1,5 @@
-﻿using OS_Calculator.MVVM.Models;
+﻿using OS_Calculator.Common;
+using OS_Calculator.MVVM.Models;
 using OS_Calculator.MVVM.Pages;
 
 namespace OS_Calculator
@@ -60,7 +61,8 @@ namespace OS_Calculator
                         }
 
 
-                        Navigation.PushModalAsync(new CPUSchedule(ref processes));
+                        //Navigation.PushModalAsync(new CPUSchedule(ref processes));
+                        CustomizationController.PageNavigate(processes);
 
 
                     }
@@ -73,6 +75,11 @@ namespace OS_Calculator
 
 
 
+        }
+
+        private void btnBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 

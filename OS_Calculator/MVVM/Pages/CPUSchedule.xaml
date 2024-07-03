@@ -42,12 +42,12 @@
                                 <Entry Placeholder="Enter the arrival time of the process" Text="{Binding ArrivalTime}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                            <Label Text="Priority:" FontSize="20"/>
-                                <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
+                            <Label Text="Priority:" FontSize="20" IsVisible="{Binding IsPriority}" IsEnabled="{Binding IsPriority}"/>
+                                <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" IsVisible="{Binding IsPriority}" IsEnabled="{Binding IsPriority}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                         </HorizontalStackLayout>
                             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                                <Label Text="Number of tickets:" FontSize="20"/>
-                                <Entry Placeholder="For Lottery Algorithm"  Text="{Binding Tickets}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
+                                <Label Text="Tickets Number:" FontSize="20" IsVisible="{Binding IsLottery}" IsEnabled="{Binding IsLottery}"/>
+                                <Entry Placeholder="For Lottery Algorithm"  Text="{Binding Tickets}" IsVisible="{Binding IsLottery}" IsEnabled="{Binding IsLottery}" TextChanged="Entry_TextChanged" WidthRequest="150" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                             </HorizontalStackLayout>
                             <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
                     </VerticalStackLayout>
@@ -58,6 +58,7 @@
     </VerticalStackLayout>
             <Button Text="Next" Command="{Binding GoToMemoryDataCommand}" BackgroundColor="Red"/>
             <Button Text="Previous" Clicked="ButtonPrevious_Clicked" BackgroundColor="Red"/>
+            <Button Text="Home Page" Clicked="ButtonHome_Clicked" BackgroundColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OS_Calculator.MVVM.Pages.FirstPage"
+             Title="FirstPage">
+    <ScrollView FlowDirection="LeftToRight">
+    <VerticalStackLayout Spacing="10" Padding="30">
+        <Label 
+            Text="OS Calculator" FontSize="Large" FontFamily="Offside"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" Margin="0,0,0,100" />
+
+        <Label Text="Choose your options:" FontSize="Medium" Margin="0,0,0,20"/>
+        <Label Text="CPU Scheduling Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,10"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <CheckBox IsChecked="{Binding FCFS}" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="First Come First Serve" Grid.Row="0" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding RoundRobin}" Grid.Row="1" Grid.Column="0"/>
+                <Label Text="Round Robin" Grid.Row="1" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding SJF}" Grid.Row="2" Grid.Column="0"/>
+                <Label Text="Shortest Job First" Grid.Row="2" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding SRT}" Grid.Row="3" Grid.Column="0"/>
+                <Label Text="Shortest Remaining Time" Grid.Row="3" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding HRRN}" Grid.Row="4" Grid.Column="0"/>
+                <Label Text="Highest Response Ratio Next" Grid.Row="4" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding Priority}" Grid.Row="5" Grid.Column="0"/>
+                <Label Text="Priority" Grid.Row="5" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding Lottery}" Margin="0,0,0,30" Grid.Row="6" Grid.Column="0"/>
+                <Label Text="Lottery" Grid.Row="6" Grid.Column="1" FontSize="Medium" />
+                <Label Text="Memory Allocation Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <CheckBox IsChecked="{Binding Paging}" Margin="0,0,0,50" Grid.Row="8" Grid.Column="0"/>
+                <Label Text="Paging" Grid.Row="8" Grid.Column="1" FontSize="Medium" />
+            </Grid>
+            <Button Text="Confirm" x:Name="btnConfirmCustom" Clicked="btnConfirmCustom_Clicked" BackgroundColor="Red" WidthRequest="200"></Button>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

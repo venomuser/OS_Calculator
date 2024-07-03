@@ -1,4 +1,5 @@
-﻿using OS_Calculator.MVVM.Models;
+﻿using OS_Calculator.Common;
+using OS_Calculator.MVVM.Models;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,13 @@ namespace OS_Calculator.MVVM.ViewModels
         public List<Processes> _processes { get; set; }
 
         private List<int?> _completionTime;
+        public bool IsFCFS { get; set; }
+        public bool IsRR { get; set; }
+        public bool IsSJF { get; set; }
+        public bool IsSRT { get; set; }
+        public bool IsHRRN { get; set; }
+        public bool IsPriority { get; set; }
+        public bool IsLottery { get; set; }
 
         public Dictionary<string, double?> FCFSWaitingTime { get; set; }
         public Dictionary<string, double?> RRWaitingTime { get; set; }
@@ -48,7 +56,15 @@ namespace OS_Calculator.MVVM.ViewModels
 
         public OperationsViewModel(int Quantom, List<Processes> processes)
         {
-            
+            IsFCFS = CustomizationController.FCFS;
+            IsRR = CustomizationController.RoundRobin;
+            IsSJF = CustomizationController.SJF;
+            IsSRT = CustomizationController.SRT;
+            IsHRRN = CustomizationController.HRRN;
+            IsPriority = CustomizationController.Priority;
+            IsLottery = CustomizationController.Lottery;
+
+
             Random random = new Random();
             _processes = processes;
             chart = new FCFSChart[_processes.Count + 1];
@@ -77,29 +93,54 @@ namespace OS_Calculator.MVVM.ViewModels
                 process.ProcessColor = hexColor;
             }
             quantom = Quantom;
-            FCFSWaitingTime = new Dictionary<string, double?>();
+            FCFSWaitingTime = new Dictionary<string?, double?>();
             _completionTime = new List<int?>();
-            RRWaitingTime = new Dictionary<string, double?>();
-            SJFWaitingTime = new Dictionary<string, double?>();
-            SRTWaitingTime = new Dictionary<string, double?>();
-            HRRNWaitingTime = new Dictionary<string, double?>();
-            PriorityWaitingTime = new Dictionary<string, double?>();
-            MLQWaitingTime = new Dictionary<string, double?>();
-            MLFQWaitingTime = new Dictionary<string, double?>();
-            LotteryWaitingTime = new Dictionary<string, double?>();
-            Queue1WaitingTime = new Dictionary<string, double?>();
-            Queue2WaitingTime = new Dictionary<string, double?>();
+            RRWaitingTime = new Dictionary<string?, double?>();
+            SJFWaitingTime = new Dictionary<string?, double?>();
+            SRTWaitingTime = new Dictionary<string?, double?>();
+            HRRNWaitingTime = new Dictionary<string?, double?>();
+            PriorityWaitingTime = new Dictionary<string?, double?>();
+            MLQWaitingTime = new Dictionary<string?, double?>();
+            MLFQWaitingTime = new Dictionary<string?, double?>();
+            LotteryWaitingTime = new Dictionary<string?, double?>();
+            Queue1WaitingTime = new Dictionary<string?, double?>();
+            Queue2WaitingTime = new Dictionary<string?, double?>();
 
             Thread t2 = new Thread(new ThreadStart(() =>
                {
                   
-            FCFS(_processes);
-            RoundRobin(_processes, quantom);
-            SJF(_processes);
-            SRT(_processes);
-            HRRN(_processes);
-            PriorityScheduling(_processes);
-            LotteryScheduling(_processes);
+                   if (IsFCFS == true)
+                   {
+                       FCFS(_processes);
+                   }
+                   if(IsRR == true) {
+                       RoundRobin(_processes, quantom);
+                   }
+
+                   if (IsSJF == true)
+                   {
+                       SJF(_processes);
+                   }
+                   if (IsSRT == true)
+                   {
+                       SRT(_processes);
+                   }
+                   if(IsHRRN == true)
+                   {
+                       HRRN(_processes);
+                   }
+
+                   if(IsPriority == true)
+                   {
+                       PriorityScheduling(_processes);
+                   }
+
+                   if (IsLottery == true)
+                   {
+                       LotteryScheduling(_processes);
+                   }
+
+                   
             //MLQ(_processes, quantom);
             //MLFQ(_processes, 3, new int[] { quantom, quantom / 2, (quantom / 2) / 2 });
             AverageWaitingTime();

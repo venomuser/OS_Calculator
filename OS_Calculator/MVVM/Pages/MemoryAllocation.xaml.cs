@@ -28,6 +28,6 @@ public partial class MemoryAllocation : ContentPage
 
     private void ButtonRoot_Clicked(object sender, EventArgs e)
     {
-        App.Current.MainPage = new NavigationPage(new MainPage());
+        App.Current.MainPage = new NavigationPage(new FirstPage());
     }
 }

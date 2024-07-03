@@ -23,6 +23,11 @@
             Text="Next"
             WidthRequest="200"
             Clicked="btnCPUpage_Clicked" BackgroundColor="Red"/>
+        <Button 
+          x:Name="btnBack"
+            Text="Previous"
+             WidthRequest="200"
+            Clicked="btnBack_Clicked" BackgroundColor="Red"/>
     </StackLayout>
 
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.DependencyInjection;
+using OS_Calculator.MVVM.Pages;
 using OS_Calculator.MVVM.ViewModels;
 namespace OS_Calculator
 {
@@ -10,7 +11,7 @@ namespace OS_Calculator
             InitializeComponent();
 
       
-            MainPage = new MainPage();
+            MainPage = new FirstPage();
         }
 
         

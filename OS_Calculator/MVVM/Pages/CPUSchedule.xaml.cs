@@ -26,4 +26,9 @@ public partial class CPUSchedule : ContentPage
     {
         Common.Common.NumericEntryOnChange(sender, e);
     }
+
+    private void ButtonHome_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new FirstPage());
+    }
 }

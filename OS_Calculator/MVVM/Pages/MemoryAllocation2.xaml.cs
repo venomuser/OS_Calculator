@@ -22,7 +22,7 @@ public partial class MemoryAllocation2 : ContentPage
 
     private void ButtonInit_Clicked(object sender, EventArgs e)
     {
-        App.Current.MainPage = new NavigationPage(new MainPage());
+        App.Current.MainPage = new NavigationPage(new FirstPage());
     }
 
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)

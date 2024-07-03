@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
 using OS_Calculator.MVVM.Models;
+using OS_Calculator.MVVM.Pages;
 using OS_Calculator.MVVM.Popups;
 using PropertyChanged;
 using System;
@@ -30,7 +31,7 @@ namespace OS_Calculator.MVVM.ViewModels
 
         private void Root_Pressed(object obj)
         {
-            App.Current.MainPage = new NavigationPage(new MainPage());
+            App.Current.MainPage = new NavigationPage(new FirstPage());
         }
 
         private void Back_Pressed(object obj)

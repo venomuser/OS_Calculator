@@ -30,7 +30,7 @@ public partial class MemoryBlocksSizesPopup : Popup
            
            
             List<double?> entryValues = new List<double?>();
-           
+            double? size = 0;
 
 
 
@@ -38,7 +38,7 @@ public partial class MemoryBlocksSizesPopup : Popup
             {
                 if (view is Entry entry)
                 {
-                    if (Convert.ToDouble(entry.Text) <= 0 || Convert.ToDouble(entry.Text) > 10000)
+                    if (Convert.ToDouble(entry.Text) <= 0 || Convert.ToDouble(entry.Text) > 100000)
                     {
                         lblError.Text = "Error! You should input valid value to the entries!";
                         lblError.IsVisible = true;
@@ -48,6 +48,16 @@ public partial class MemoryBlocksSizesPopup : Popup
                     else
                     {
                         entryValues.Add(Convert.ToDouble(entry.Text));
+                        foreach (var block in entryValues)
+                        {
+                            size += block;
+                        }
+                        if (size > _memory.MemorySize)
+                        {
+                            lblError.Text = "Error! Blocks Sizes are bigger than memory size!";
+                            lblError.IsVisible = true;
+                            goto Finish;
+                        }
                     }
 
 
@@ -59,6 +69,8 @@ public partial class MemoryBlocksSizesPopup : Popup
             {     
                 _memory.BlockStorage.Add(item);
             }
+            
+            
             Close();
             
             App.Current.MainPage = new NavigationPage(new ResultPage(Processes));

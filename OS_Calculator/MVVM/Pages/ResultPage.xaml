@@ -22,17 +22,17 @@
                 
                 <Button Text="Show Results" WidthRequest="200" BackgroundColor="Red" x:Name="btnShowResults" Clicked="btnShowResults_Clicked" />
                 
-                <Label Text="First Come First Serve" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                <Label Text="First Come First Serve" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsFCFS}"/>
                 
-                    <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                    <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="FCFSdataGrid">
                         <dg:DataGrid.Columns>
                             <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
                             <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
                             <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                         </dg:DataGrid.Columns>
                     </dg:DataGrid>
-                
-                <ScrollView Orientation="Horizontal">
+
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsFCFS}" IsEnabled="{Binding IsFCFS}">
                 <Grid>
                     <!-- Define columns and rows for the grid -->
                     <Grid.ColumnDefinitions>
@@ -78,7 +78,7 @@
                 </Grid>
                 </ScrollView>
 
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding FCFSWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding FCFSWaitingTime}" IsVisible="{Binding IsFCFS}" IsEnabled="{Binding IsFCFS}">
                 
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
@@ -93,12 +93,12 @@
                         </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
-                
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
-                
-                <Label Text="Round Robin" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
 
-                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000"  IsVisible="{Binding IsFCFS}"/>
+
+                <Label Text="Round Robin" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsRR}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="RRdataGrid">
                     <dg:DataGrid.Columns>
                         <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
@@ -106,11 +106,11 @@
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
 
-                <HorizontalStackLayout Spacing="5">
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsRR}" IsEnabled="{Binding IsRR}">
                     <Label Text="Quantum Time: " FontSize="Medium"/>
                     <Label Text="{Binding Quantom}" FontSize="Medium"/>
                 </HorizontalStackLayout>
-                <ScrollView Orientation="Horizontal">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsRR}" IsEnabled="{Binding IsRR}">
                 <Grid>
                     <!-- Define columns and rows for the grid -->
                     <Grid.ColumnDefinitions>
@@ -155,7 +155,7 @@
                     </HorizontalStackLayout>
                 </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding RRWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding RRWaitingTime}" IsVisible="{Binding IsRR}" IsEnabled="{Binding IsRR}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -170,17 +170,17 @@
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
 
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000"  IsVisible="{Binding IsRR}"/>
 
-                <Label Text="Shortest Job First" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
-                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Shortest Job First" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsSJF}"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="SJFdataGrid">
                     <dg:DataGrid.Columns>
                         <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
-                <ScrollView Orientation="Horizontal">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsSJF}" IsEnabled="{Binding IsSJF}">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -225,7 +225,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SJFWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SJFWaitingTime}" IsVisible="{Binding IsSJF}" IsEnabled="{Binding IsSJF}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -240,17 +240,17 @@
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
 
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000"  IsVisible="{Binding IsSJF}"/>
 
-                <Label Text="Shortest Remaining Time" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
-                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Shortest Remaining Time" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsSRT}"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="SRTdataGrid">
                     <dg:DataGrid.Columns>
                         <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
-                <ScrollView Orientation="Horizontal">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsSRT}" IsEnabled="{Binding IsSRT}">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -295,7 +295,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SRTWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SRTWaitingTime}" IsVisible="{Binding IsSRT}" IsEnabled="{Binding IsSRT}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -310,17 +310,17 @@
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
 
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000"  IsVisible="{Binding IsSRT}"/>
 
-                <Label Text="Highest Response Ratio Next" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
-                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Highest Response Ratio Next" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsHRRN}"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="HRRNdataGrid">
                     <dg:DataGrid.Columns>
                         <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
                         <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
-                <ScrollView Orientation="Horizontal">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsHRRN}" IsEnabled="{Binding IsHRRN}">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -365,7 +365,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding HRRNWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding HRRNWaitingTime}" IsVisible="{Binding IsHRRN}" IsEnabled="{Binding IsHRRN}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -379,11 +379,11 @@
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
 
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000"  IsVisible="{Binding IsHRRN}"/>
 
-                <Label Text="Priority" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
-                
-                    <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="360" HeightRequest="400"  HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Priority" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsPriority}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="360" HeightRequest="400"  HorizontalOptions="Center" VerticalOptions="Center" x:Name="PrioritydataGrid">
                         <dg:DataGrid.Columns>
                             <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="85" SortingEnabled="False" />
                             <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="85" SortingEnabled="False" />
@@ -391,8 +391,8 @@
                             <dg:DataGridColumn Title="Priority" PropertyName="Priority" Width="85" SortingEnabled="False" />
                         </dg:DataGrid.Columns>
                     </dg:DataGrid>
-               
-                <ScrollView Orientation="Horizontal">
+
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsPriority}" IsEnabled="{Binding IsPriority}">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -437,7 +437,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding PriorityWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding PriorityWaitingTime}" IsVisible="{Binding IsPriority}" IsEnabled="{Binding IsPriority}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -453,11 +453,11 @@
                 </VerticalStackLayout>
 
 
-                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsPriority}"/>
 
-                <Label Text="Lottery" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                <Label Text="Lottery" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsLottery}"/>
 
-                <dg:DataGrid ItemsSource="{Binding _processes}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="360" HeightRequest="400">
+                <dg:DataGrid ItemsSource="{Binding _processes}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="360" HeightRequest="400" x:Name="LotterydataGrid">
                         <dg:DataGrid.Columns>
                             <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="85" SortingEnabled="False" />
                             <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="85" SortingEnabled="False" />
@@ -465,8 +465,8 @@
                             <dg:DataGridColumn Title="Tickets" PropertyName="Tickets" Width="85" SortingEnabled="False" />
                         </dg:DataGrid.Columns>
                     </dg:DataGrid>
-                
-                <ScrollView Orientation="Horizontal">
+
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsLottery}" IsEnabled="{Binding IsLottery}">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -511,7 +511,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding LotteryWaitingTime}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding LotteryWaitingTime}" IsVisible="{Binding IsLottery}" IsEnabled="{Binding IsLottery}">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -532,6 +532,8 @@
         <ScrollView FlowDirection="LeftToRight"></ScrollView>
     </ContentPage>
     <ContentPage Title="Ultimate Result">
-        <VerticalStackLayout FlowDirection="LeftToRight"></VerticalStackLayout>
+        <VerticalStackLayout FlowDirection="LeftToRight">
+            <Button Text="Home Page" Clicked="HomeButton_Clicked" BackgroundColor="Red" WidthRequest="200"/>
+        </VerticalStackLayout>
     </ContentPage>
 </TabbedPage>

@@ -99,6 +99,9 @@
 	  <MauiXaml Update="MVVM\Pages\CPUSchedule.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Pages\FirstPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Pages\MemoryAllocation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

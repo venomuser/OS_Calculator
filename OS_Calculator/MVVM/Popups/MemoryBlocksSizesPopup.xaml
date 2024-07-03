@@ -35,8 +35,8 @@
 
                 <Label Text="" TextColor="Red" FontSize="Small" IsVisible="False" x:Name="lblError"/>
                 <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
-                <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked" x:Name="btnResult"/>
-                 <Button Text="Cancel" WidthRequest="100" x:Name="btnCancel" Clicked="btnCancel_Clicked"/>
+                <Button Text="Result" WidthRequest="100" Clicked="ButtonResult_Clicked" x:Name="btnResult" BackgroundColor="Red"/>
+                <Button Text="Cancel" WidthRequest="100" x:Name="btnCancel" Clicked="btnCancel_Clicked" BackgroundColor="Red"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </Border>
