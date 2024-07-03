@@ -6,16 +6,16 @@
            CanBeDismissedByTappingOutsideOfPopup="False">
     <Border Padding="20" 
 Stroke="Transparent"
-BackgroundColor="Gold">
+BackgroundColor="Gold" FlowDirection="LeftToRight">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="28"/>
         </Border.StrokeShape>
-        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50" WidthRequest="500" HeightRequest="500" BackgroundColor="Gold">
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="50" WidthRequest="500" HeightRequest="500" BackgroundColor="Gold" Padding="50">
         
             <Label 
             Text="Algorithm necessaries"
-             FontFamily="Offside" FontSize="Large" />
-            <Entry Placeholder="Round Robin Quantom" WidthRequest="200" x:Name="rrEntry" TextChanged="rrEntry_TextChanged" BackgroundColor="White"/>
+             FontFamily="Offside" FontSize="Large" VerticalTextAlignment="Center"/>
+            <Entry Placeholder="Round Robin Quantom" WidthRequest="200" x:Name="rrEntry" TextChanged="rrEntry_TextChanged" BackgroundColor="White" Keyboard="Numeric"/>
             <Label Text="" TextColor="Red" IsVisible="False" x:Name="lblError"/>
             <Button BackgroundColor="Red" WidthRequest="100" Text="Enter" Clicked="Button_Clicked" />
         

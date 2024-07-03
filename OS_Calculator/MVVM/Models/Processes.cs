@@ -19,6 +19,8 @@ namespace OS_Calculator.MVVM.Models
 			set { processUnits = value; }
 		}
 
+		public int? ProcessUnits10X { get { return processUnits*10; } }
+
 		// when the processes arrives
 		private int? arrivalTime;
 
@@ -58,9 +60,29 @@ namespace OS_Calculator.MVVM.Models
 			set { numberOfBlocks = value; }
 		}
 
-        public List<double?> BlockSizesMB { get; set; } = new List<double?>(); // Sizes of each memory block
+        public List<int?> BlockSizesMB { get; set; } = new List<int?>(); // Sizes of each memory block
 
 
+		private string?processColor;
 
-    }
+		public string? ProcessColor
+		{
+			get { return processColor; }
+			set { processColor = value; }
+		}
+
+		public int? SRTRemainingTime {  get; set; }
+
+		private int? tickets;
+
+		public int? Tickets // for Lottery algorithm
+		{
+			get { return tickets; }
+			set { tickets = value; }
+		}
+
+		public string ProcessName { get => "P" + processNumber; }
+
+
+	}
 }

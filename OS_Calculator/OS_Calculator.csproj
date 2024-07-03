@@ -50,10 +50,14 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FF0000" />
+		<MauiSplashScreen Include="Resources\Raw\oscalculator.svg">
+		  <Color>#FF0000</Color>
+		  <BaseSize>640,640</BaseSize>
+		</MauiSplashScreen>
 
 		<!-- Splash Screen -->
-		<!--<MauiSplashScreen Include="Resources\raw\splash.svg" Color="#512BD4" BaseSize="128,128" /> -->
-		<MauiSplashScreen Include="Resources\Splash\oscalculator.svg" Color="#FF0000" BaseSize="640,640" />
+		<!--<MauiSplashScreen Include="Resources\raw\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
+		<MauiSplashScreen Include="Resources\splash\oscalculator.svg" Color="#FF0000" BaseSize="640,640" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -67,13 +71,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\Offside-Regular.ttf" />
+	  <MauiAsset Remove="Resources\Raw\oscalculator.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Offside-Regular.ttf" />
+	  <None Remove="Resources\Images\loading.gif" />
+	  <None Remove="Resources\Raw\oscalculator.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.4" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.61" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.61" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
 	</ItemGroup>

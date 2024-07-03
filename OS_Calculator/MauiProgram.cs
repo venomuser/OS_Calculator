@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
+
+
 namespace OS_Calculator
 {
     public static class MauiProgram
@@ -8,8 +10,10 @@ namespace OS_Calculator
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+            
             builder
                 .UseMauiApp<App>()
+             
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {

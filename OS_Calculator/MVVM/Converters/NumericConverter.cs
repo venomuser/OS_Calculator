@@ -13,18 +13,19 @@ namespace OS_Calculator.MVVM.Converters
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return value.ToInt();
-            
+            if (value is double doubleValue)
+            {
+                return doubleValue.ToString("F2");
+            }
+
+            return value;
+
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (value.ToInt() == null)
-            {
-                return 0;
-            }
-            else
-                return value.ToInt();
+           
+                return value;
         }
     }
 }

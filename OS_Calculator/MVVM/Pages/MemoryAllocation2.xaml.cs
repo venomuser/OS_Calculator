@@ -75,7 +75,7 @@ public partial class MemoryAllocation2 : ContentPage
                             IsRemainingIndex = false;
                             break;
                         }
-                        list.BlockSizesMB.Add(Convert.ToDouble(entryValues[BlockIndex]));
+                        list.BlockSizesMB.Add(Convert.ToInt32(entryValues[BlockIndex]));
                         BlockIndex++;
                     }
                     if (!IsRemainingIndex)

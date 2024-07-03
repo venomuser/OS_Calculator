@@ -14,6 +14,8 @@ namespace OS_Calculator.MVVM.ViewModels
     public class MemoryBlocksViewModel
     {
         private bool IsReady;
+
+        
         public List<Processes> _Processes { get; set; }
         public MemoryBlocksViewModel(List<Processes> processes)
         {
@@ -26,7 +28,7 @@ namespace OS_Calculator.MVVM.ViewModels
         {
             foreach (var proc in _Processes)
             {
-                if (proc.NumberOfBlocks  == null || proc.NumberOfBlocks < 1 || proc.NumberOfBlocks > 10)
+                if (proc.NumberOfBlocks  == null || proc.NumberOfBlocks < 1 || proc.NumberOfBlocks > 50)
                 {
                     IsReady = false;
                     App.Current.MainPage.DisplayAlert("Error", "Maximum memory blocks that you can enter is 10, and minimum is 1! Also it cannot be null!", "OK");

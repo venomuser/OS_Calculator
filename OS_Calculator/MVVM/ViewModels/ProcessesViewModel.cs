@@ -23,16 +23,16 @@ namespace OS_Calculator.MVVM.ViewModels
         {
             foreach(var proc in Processes)
             {
-                if(proc.ArrivalTime <=0 || proc.ArrivalTime == null || proc.ProcessUnits <=0 || proc.ProcessUnits == null || proc.Priority <=0 || proc.Priority == null)
+                if(proc.ArrivalTime < 0 || proc.ArrivalTime == null || proc.ProcessUnits <=0 || proc.ProcessUnits == null || proc.Priority <=0 || proc.Priority == null || proc.Tickets <=0 || proc.Tickets == null)
                 {
                     IsReady = false;
                     App.Current.MainPage.DisplayAlert("Error", "The entries should not equal to or be smaller than 0 or should not be null or it should not be greater than 50 or it should be just Integer type!","OK");
                     break;
                 }
-                else if(proc.ArrivalTime > 50 || proc.ProcessUnits > 50 || proc.Priority > 100)
+                else if(proc.ArrivalTime > 1000 || proc.ProcessUnits > 1000 || proc.Priority > 1000 || proc.Tickets > 1000)
                 {
                     IsReady = false;
-                    App.Current.MainPage.DisplayAlert("Error", "The entries should not be greater than 50! Also priority should not be greater than 100!", "OK");
+                    App.Current.MainPage.DisplayAlert("Error", "The entries should not be greater than 1000!", "OK");
                     break;
                 }
                 IsReady = true;

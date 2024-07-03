@@ -13,7 +13,7 @@ namespace OS_Calculator.MVVM.ViewModels
         private object? val;
         private bool IsReady;
 
-
+       
         public List<Processes> Processes { get; set; }
         public ICommand GoToMemorySizeCommand => new Command(GoToMemory);
 

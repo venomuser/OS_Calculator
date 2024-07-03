@@ -45,7 +45,11 @@
                             <Label Text="Priority:" FontSize="20"/>
                                 <Entry Placeholder="Enter the priority of the process"  Text="{Binding Priority}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
                         </HorizontalStackLayout>
-                        <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                                <Label Text="Number of tickets:" FontSize="20"/>
+                                <Entry Placeholder="For Lottery Algorithm"  Text="{Binding Tickets}" TextChanged="Entry_TextChanged" WidthRequest="200" FontSize="11" Keyboard="Numeric" PlaceholderColor="Orange"/>
+                            </HorizontalStackLayout>
+                            <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
                     </VerticalStackLayout>
                 
             </DataTemplate>

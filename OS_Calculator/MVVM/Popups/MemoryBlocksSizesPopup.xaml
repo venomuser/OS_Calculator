@@ -7,7 +7,7 @@
         VerticalOptions="Center"
         HorizontalOptions="Center"
         WidthRequest="500"
-        HeightRequest="500">
+        HeightRequest="500" FlowDirection="LeftToRight">
         
         
           <Border Padding="20" 

@@ -2,14 +2,536 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OS_Calculator.MVVM.Pages.ResultPage"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+            
              Title="ResultPage">
-    <ContentPage Title="CPU Scheduling">
+    <ContentPage Title="CPU Scheduling"  
+                 xmlns:converters="clr-namespace:OS_Calculator.MVVM.Converters"
+                 xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+                 >
         
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <converters:NumericConverter x:Key="NumericConverter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        <!--  <scheduler:SfScheduler x:Name="Scheduler" View="TimelineDay"/> -->
+        <ScrollView VerticalOptions="Center" HorizontalOptions="Center" FlowDirection="LeftToRight">
+
+            <VerticalStackLayout Padding="20" Spacing="50">
+                
+                <Button Text="Show Results" WidthRequest="200" BackgroundColor="Red" x:Name="btnShowResults" Clicked="btnShowResults_Clicked" />
+                
+                <Label Text="First Come First Serve" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                
+                    <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                        <dg:DataGrid.Columns>
+                            <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
+                        </dg:DataGrid.Columns>
+                    </dg:DataGrid>
+                
+                <ScrollView Orientation="Horizontal">
+                <Grid>
+                    <!-- Define columns and rows for the grid -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Timeline labels -->
+                    <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding chart}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+
+                                    <BoxView WidthRequest="{Binding FCFSUnitsX}" BackgroundColor="Transparent" HeightRequest="0"/>
+                                    <Label Text="{Binding FCFSTimeLine}" FontSize="Small" />
+                                    
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+
+                    <!-- Gantt chart bars and process names -->
+                    <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding _processes}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+
+                                    <Frame BorderColor="Black" CornerRadius="0" Padding="0" HasShadow="False">
+                                        <BoxView WidthRequest="{Binding ProcessUnits10X}" HeightRequest="50" BackgroundColor="{Binding ProcessColor}"/>
+                                    </Frame>
+                                    <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Label Text="P" FontSize="Small" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding ProcessNumber}" FontSize="Small" HorizontalTextAlignment="Center" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </Grid>
+                </ScrollView>
+
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding FCFSWaitingTime}">
+                
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                            
+                                
+                            <HorizontalStackLayout Spacing="10">
+                            <Label Text="{Binding Key}" FontSize="Medium" />
+                            <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            
+
+                        </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+                
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+                
+                <Label Text="Round Robin" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Quantum Time: " FontSize="Medium"/>
+                    <Label Text="{Binding Quantom}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <ScrollView Orientation="Horizontal">
+                <Grid>
+                    <!-- Define columns and rows for the grid -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Timeline labels -->
+                    <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding RRchart}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+
+                                    <BoxView WidthRequest="50" BackgroundColor="Transparent" HeightRequest="0"/>
+                                    <Label Text="{Binding Item3}" FontSize="Small" />
+
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+
+                    <!-- Gantt chart bars and process names -->
+                    <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding RRchart}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout>
+
+                                    <Frame BorderColor="{Binding Item4}" CornerRadius="0" Padding="0" HasShadow="False">
+                                        <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding Item2}"/>
+                                    </Frame>
+                                    <HorizontalStackLayout HorizontalOptions="Center">
+                                        
+                                        <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding RRWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+
+                <Label Text="Shortest Job First" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <ScrollView Orientation="Horizontal">
+                    <Grid>
+                        <!-- Define columns and rows for the grid -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Timeline labels -->
+                        <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding SJFChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <BoxView WidthRequest="{Binding Item5}" BackgroundColor="Transparent" HeightRequest="0"/>
+                                        <Label Text="{Binding Item3}" FontSize="Small" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+
+                        <!-- Gantt chart bars and process names -->
+                        <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding SJFChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <Frame BorderColor="{Binding Item4}" CornerRadius="0" Padding="0" HasShadow="False">
+                                            <BoxView WidthRequest="{Binding Item5}" HeightRequest="50" BackgroundColor="{Binding Item2}"/>
+                                        </Frame>
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+
+                                            <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SJFWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+
+                <Label Text="Shortest Remaining Time" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <ScrollView Orientation="Horizontal">
+                    <Grid>
+                        <!-- Define columns and rows for the grid -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Timeline labels -->
+                        <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding SRTChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <BoxView WidthRequest="52" BackgroundColor="Transparent" HeightRequest="0"/>
+                                        <Label Text="{Binding Item3}" FontSize="Small" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+
+                        <!-- Gantt chart bars and process names -->
+                        <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding SRTChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <Frame BorderColor="{Binding Item4}" CornerRadius="0" Padding="0" HasShadow="False">
+                                            <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding Item2}"/>
+                                        </Frame>
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+
+                                            <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding SRTWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+
+                <Label Text="Highest Response Ratio Next" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="90" SortingEnabled="False" />
+                        <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <ScrollView Orientation="Horizontal">
+                    <Grid>
+                        <!-- Define columns and rows for the grid -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Timeline labels -->
+                        <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding HRRNchart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <BoxView WidthRequest="{Binding Item2}" BackgroundColor="Transparent" HeightRequest="0"/>
+                                        <Label Text="{Binding Item3}" FontSize="Small" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+
+                        <!-- Gantt chart bars and process names -->
+                        <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding HRRNchart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <Frame BorderColor="{Binding Item5}" CornerRadius="0" Padding="0" HasShadow="False">
+                                            <BoxView WidthRequest="{Binding Item2}" HeightRequest="50" BackgroundColor="{Binding Item4}"/>
+                                        </Frame>
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+
+                                            <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding HRRNWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+
+                <Label Text="Priority" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+                
+                    <dg:DataGrid ItemsSource="{Binding _processes}" WidthRequest="360" HeightRequest="400"  HorizontalOptions="Center" VerticalOptions="Center">
+                        <dg:DataGrid.Columns>
+                            <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Priority" PropertyName="Priority" Width="85" SortingEnabled="False" />
+                        </dg:DataGrid.Columns>
+                    </dg:DataGrid>
+               
+                <ScrollView Orientation="Horizontal">
+                    <Grid>
+                        <!-- Define columns and rows for the grid -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Timeline labels -->
+                        <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding PriorityChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <BoxView WidthRequest="{Binding Item2}" BackgroundColor="Transparent" HeightRequest="0"/>
+                                        <Label Text="{Binding Item3}" FontSize="Small" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+
+                        <!-- Gantt chart bars and process names -->
+                        <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding PriorityChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <Frame BorderColor="{Binding Item5}" CornerRadius="0" Padding="0" HasShadow="False">
+                                            <BoxView WidthRequest="{Binding Item2}" HeightRequest="50" BackgroundColor="{Binding Item4}"/>
+                                        </Frame>
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+
+                                            <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding PriorityWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" />
+
+                <Label Text="Lottery" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100"/>
+
+                <dg:DataGrid ItemsSource="{Binding _processes}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="360" HeightRequest="400">
+                        <dg:DataGrid.Columns>
+                            <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Burst Time" PropertyName="ProcessUnits" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="85" SortingEnabled="False" />
+                            <dg:DataGridColumn Title="Tickets" PropertyName="Tickets" Width="85" SortingEnabled="False" />
+                        </dg:DataGrid.Columns>
+                    </dg:DataGrid>
+                
+                <ScrollView Orientation="Horizontal">
+                    <Grid>
+                        <!-- Define columns and rows for the grid -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Timeline labels -->
+                        <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding LotteryChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <BoxView WidthRequest="52" BackgroundColor="Transparent" HeightRequest="0"/>
+                                        <Label Text="{Binding Item2}" FontSize="Small" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+
+                        <!-- Gantt chart bars and process names -->
+                        <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding LotteryChart}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout>
+
+                                        <Frame BorderColor="{Binding Item4}" CornerRadius="0" Padding="0" HasShadow="False">
+                                            <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding Item3}"/>
+                                        </Frame>
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+
+                                            <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding LotteryWaitingTime}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Key}" FontSize="Medium" />
+                                <Label Text="{Binding Value, Converter={StaticResource NumericConverter}}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage>
     <ContentPage Title="RAM Allocation">
-        
+        <ScrollView FlowDirection="LeftToRight"></ScrollView>
     </ContentPage>
     <ContentPage Title="Ultimate Result">
-        
+        <VerticalStackLayout FlowDirection="LeftToRight"></VerticalStackLayout>
     </ContentPage>
 </TabbedPage>
