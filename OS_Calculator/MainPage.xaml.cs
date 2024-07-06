@@ -54,6 +54,7 @@ namespace OS_Calculator
                     }
                     else
                     {
+                        
                         List<Processes> processes = new List<Processes>();
                         for (long i = 0; i < Convert.ToInt32(txtProcessNumber.Text); i++)
                         {

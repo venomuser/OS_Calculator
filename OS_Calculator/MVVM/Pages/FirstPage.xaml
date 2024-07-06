@@ -28,8 +28,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                   
                     
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -61,12 +60,10 @@
                 <Label Text="Worst Fit" Grid.Row="11" Grid.Column="1" FontSize="Medium" />
                 <CheckBox IsChecked="{Binding StaticPart}"  Grid.Row="12" Grid.Column="0"/>
                 <Label Text="Fixed Partitioning" Grid.Row="12" Grid.Column="1" FontSize="Medium" />
-                <CheckBox IsChecked="{Binding DynamicPart}"  Grid.Row="13" Grid.Column="0"/>
+                <CheckBox IsChecked="{Binding DynamicPart}"  Grid.Row="13" Grid.Column="0" Margin="0,0,0,50"/>
                 <Label Text="Variable Partitioning" Grid.Row="13" Grid.Column="1" FontSize="Medium" />
-                <CheckBox IsChecked="{Binding Paging}"  Grid.Row="14" Grid.Column="0"/>
-                <Label Text="Paging" Grid.Row="14" Grid.Column="1" FontSize="Medium" />
-                <CheckBox IsChecked="{Binding Segmentation}" Margin="0,0,0,50" Grid.Row="15" Grid.Column="0"/>
-                <Label Text="Segmentation" Grid.Row="15" Grid.Column="1" FontSize="Medium" />
+               
+                
             </Grid>
             <Button Text="Confirm" x:Name="btnConfirmCustom" Clicked="btnConfirmCustom_Clicked" BackgroundColor="Red" WidthRequest="200"></Button>
     </VerticalStackLayout>

@@ -9,10 +9,9 @@
                  Padding="3"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
-                 FlowDirection="LeftToRight"
-                 >
+                 FlowDirection="LeftToRight">
 
-    <Entry Placeholder="Number of Processes" PlaceholderColor="Gray"
+        <Entry Placeholder="Number of Processes" PlaceholderColor="Gray"
            x:Name="txtProcessNumber"
            Keyboard="Numeric"
            TextChanged="OnNumericEntryTextChanged"

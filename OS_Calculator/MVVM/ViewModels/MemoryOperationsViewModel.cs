@@ -341,29 +341,6 @@ namespace OS_Calculator.MVVM.ViewModels
             }
         }
 
-        void Paging()
-        {
-            _pagingClass = new PagingClass[_memory.MemoryBlocks];
-            for(int i=0; i<_pagingClass.Length; i++)
-            {
-                _pagingClass[i] = new PagingClass();
-                _pagingClass[i].FrameAddress = i;
-            }
-            Random random = new Random();
-            
-            RandomFrame:
-            int frameN = random.Next(0, _pagingClass.Length);
-            if (_pagingClass[frameN].PageSize != null)
-            {
-                goto RandomFrame;
-            }
-        RandomPage:
-            int processN = random.Next(0, _processes.Count);
-            if (_pagingClass[processN].PageName != null)
-            {
-                goto RandomPage;
-            }
-            
-        }
+        
     }
 }

@@ -20,14 +20,14 @@ namespace OS_Calculator.Common
         public static bool Lottery;
 
         //Memory Allocation Algorithms Customization
-        public static bool Paging;
+        
         public static bool FixedPartitioning;
         public static bool VariablePartitioning;
         public static bool FirstFit;
         public static bool NextFit;
         public static bool BestFit;
         public static bool WorstFit;
-        public static bool Segmentation;
+       
 
         //Controlling Methods
         //Page navigation forward
@@ -36,8 +36,7 @@ namespace OS_Calculator.Common
             List<bool> CPUcheckList = new List<bool>();
             List<bool> RamCheckList = new List<bool>();
             //ram list
-            RamCheckList.Add(Paging);
-            RamCheckList.Add(Segmentation);
+            
             RamCheckList.Add(FirstFit);
             RamCheckList.Add(NextFit);
             RamCheckList.Add(BestFit);

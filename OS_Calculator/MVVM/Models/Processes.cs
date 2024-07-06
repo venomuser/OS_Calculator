@@ -12,89 +12,108 @@ namespace OS_Calculator.MVVM.Models
 {
     public class Processes
     {
-		private int? processUnits; // variable of burst time. It is amount of execution time
+        private int? processUnits; // variable of burst time. It is amount of execution time
 
-		public int? ProcessUnits // property of burst time. It is amount of execution time
+        public int? ProcessUnits // property of burst time. It is amount of execution time
         {
-			get { return processUnits; }
-			set { processUnits = value; }
-		}
+            get { return processUnits; }
+            set { processUnits = value; }
+        }
 
-		public int? ProcessUnits10X { get { return processUnits*10; } }
+        public int? ProcessUnits10X
+        {
+            get
+            {
+                int u;
+                if (processUnits < 5)
+                {
+                    u = 5;
+                    return u*10;
+                }
+                else
+                {
+                    return processUnits * 10;
+                }
 
-		// when the processes arrives
-		private int? arrivalTime;
+            }
+        }
 
-		public int? ArrivalTime
-		{
-			get { return arrivalTime; }
-			set { arrivalTime = value; }
-		}
+        // when the processes arrives
+        private int? arrivalTime;
+
+        public int? ArrivalTime
+        {
+            get { return arrivalTime; }
+            set { arrivalTime = value; }
+        }
 
 
-		//The priority of each process
-		private int? priority;
+        //The priority of each process
+        private int? priority;
 
-		public int? Priority
-		{
-			get { return priority; }
-			set { priority = value; }
-		}
+        public int? Priority
+        {
+            get { return priority; }
+            set { priority = value; }
+        }
 
-		private int processNumber;
+        private int processNumber;
 
-		public int ProcessNumber
-		{
-			get { return processNumber; }
-			set { processNumber = value; }
-		}
+        public int ProcessNumber
+        {
+            get { return processNumber; }
+            set { processNumber = value; }
+        }
 
-		//Number of memory blocks
+        //Number of memory blocks
 
-		private int? numberOfBlocks;
+        private int? numberOfBlocks;
 
-        
+
 
         public int? NumberOfBlocks
-		{
-			get { return numberOfBlocks; }
-			set { numberOfBlocks = value; }
-		}
+        {
+            get { return numberOfBlocks; }
+            set { numberOfBlocks = value; }
+        }
 
         public List<int?> BlockSizesMB { get; set; } = new List<int?>(); // Sizes of each memory block
 
 
-		private string?processColor;
+        private string? processColor;
 
-		public string? ProcessColor
-		{
-			get { return processColor; }
-			set { processColor = value; }
-		}
+        public string? ProcessColor
+        {
+            get { return processColor; }
+            set { processColor = value; }
+        }
 
-		public int? SRTRemainingTime {  get; set; }
+        public int? SRTRemainingTime { get; set; }
 
-		private int? tickets;
+        private int? tickets;
 
-		public int? Tickets // for Lottery algorithm
-		{
-			get { return tickets; }
-			set { tickets = value; }
-		}
+        public int? Tickets // for Lottery algorithm
+        {
+            get { return tickets; }
+            set { tickets = value; }
+        }
 
-		public string ProcessName { get => "P" + processNumber; }
-		public bool IsPriority { get; } = CustomizationController.Priority;
-		public bool IsLottery { get; } = CustomizationController.Lottery;
+        public string ProcessName { get => "P" + processNumber; }
+        public bool IsPriority { get; } = CustomizationController.Priority;
+        public bool IsLottery { get; } = CustomizationController.Lottery;
 
-		public int? ProcessSize { get
-			{
-				int? size = 0;
-				foreach (var block in BlockSizesMB)
-				{
-					size += block;
-				}
-				return size;
-			} }
+        public int? ProcessSize
+        {
+            get
+            {
+                int? size = 0;
+                foreach (var block in BlockSizesMB)
+                {
+                    size += block;
+                }
+                return size;
+            }
+        }
 
-	}
+    }
 }

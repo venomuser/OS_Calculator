@@ -45,13 +45,13 @@
                     </Grid.RowDefinitions>
 
                     <!-- Timeline labels -->
-                    <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding chart}">
+                    <HorizontalStackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding FCFSchart}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <VerticalStackLayout>
 
-                                    <BoxView WidthRequest="{Binding FCFSUnitsX}" BackgroundColor="Transparent" HeightRequest="0"/>
-                                    <Label Text="{Binding FCFSTimeLine}" FontSize="Small" />
+                                    <BoxView WidthRequest="{Binding Item5}" BackgroundColor="Transparent" HeightRequest="0"/>
+                                    <Label Text="{Binding Item3}" FontSize="Small" />
                                     
                                 </VerticalStackLayout>
                             </DataTemplate>
@@ -59,18 +59,18 @@
                     </HorizontalStackLayout>
 
                     <!-- Gantt chart bars and process names -->
-                    <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding _processes}">
+                    <HorizontalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding FCFSchart}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <VerticalStackLayout>
 
-                                    <Frame BorderColor="Black" CornerRadius="0" Padding="0" HasShadow="False">
-                                        <BoxView WidthRequest="{Binding ProcessUnits10X}" HeightRequest="50" BackgroundColor="{Binding ProcessColor}"/>
+                                    <Frame BorderColor="{Binding Item4}" CornerRadius="0" Padding="0" HasShadow="False">
+                                        <BoxView WidthRequest="{Binding Item5}" HeightRequest="50" BackgroundColor="{Binding Item2}"/>
                                     </Frame>
-                                    <HorizontalStackLayout HorizontalOptions="Center">
-                                    <Label Text="P" FontSize="Small" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding ProcessNumber}" FontSize="Small" HorizontalTextAlignment="Center" />
-                                    </HorizontalStackLayout>
+                                   
+                                    
+                                    <Label Text="{Binding Item1}" FontSize="Small" HorizontalTextAlignment="Center" />
+                                    
                                 </VerticalStackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -128,7 +128,7 @@
                             <DataTemplate>
                                 <VerticalStackLayout>
 
-                                    <BoxView WidthRequest="50" BackgroundColor="Transparent" HeightRequest="0"/>
+                                    <BoxView WidthRequest="52" BackgroundColor="Transparent" HeightRequest="0"/>
                                     <Label Text="{Binding Item3}" FontSize="Small" />
 
                                 </VerticalStackLayout>
@@ -673,8 +673,8 @@
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>
-    <ContentPage Title="Ultimate Result">
-        <VerticalStackLayout FlowDirection="LeftToRight">
+    <ContentPage Title="Home Page">
+        <VerticalStackLayout FlowDirection="LeftToRight" HorizontalOptions="Center" VerticalOptions="Center">
             <Button Text="Home Page" Clicked="HomeButton_Clicked" BackgroundColor="Red" WidthRequest="200"/>
         </VerticalStackLayout>
     </ContentPage>

@@ -44,7 +44,8 @@ namespace OS_Calculator.MVVM.ViewModels
 
         public Dictionary<string, double?> Queue1WaitingTime = new Dictionary<string, double?>();
         public Dictionary<string, double?> Queue2WaitingTime = new Dictionary<string, double?>();
-        public FCFSChart[] chart { get; set; }
+        
+        public List<Tuple<string?, string?, int?, string,int?>> FCFSchart { get; set; }
         public List<Tuple<string?, string?, int?, string>> RRchart { get; set; }
         public List<Tuple<string, string, int?, string, int?>> SJFChart { get; set; }
         public List<Tuple<string, string, int?, string>> SRTChart { get; set; }
@@ -67,15 +68,8 @@ namespace OS_Calculator.MVVM.ViewModels
 
             Random random = new Random();
             _processes = processes;
-            chart = new FCFSChart[_processes.Count + 1];
-            RRchart = new();
-            SJFChart = new();
-            SRTChart = new();
-            HRRNchart = new();
-            PriorityChart = new();
-            LotteryChart = new();
+            quantom = Quantom;
 
-            GenerateTimeline();
             foreach (var process in _processes)
             {
 
@@ -87,56 +81,68 @@ namespace OS_Calculator.MVVM.ViewModels
                 {
                     goto Colors;
                 }
+                
                 int blue = random.Next(0, 256);
+               if (red > 235 && green > 235 && blue > 235)
+                {
+                    goto Colors;
+                }
                 // Convert to hexadecimal and format as a string
                 string hexColor = $"#{red:X2}{green:X2}{blue:X2}";
                 process.ProcessColor = hexColor;
             }
-            quantom = Quantom;
-            FCFSWaitingTime = new Dictionary<string?, double?>();
+            
+            
             _completionTime = new List<int?>();
-            RRWaitingTime = new Dictionary<string?, double?>();
-            SJFWaitingTime = new Dictionary<string?, double?>();
-            SRTWaitingTime = new Dictionary<string?, double?>();
-            HRRNWaitingTime = new Dictionary<string?, double?>();
-            PriorityWaitingTime = new Dictionary<string?, double?>();
-            MLQWaitingTime = new Dictionary<string?, double?>();
-            MLFQWaitingTime = new Dictionary<string?, double?>();
-            LotteryWaitingTime = new Dictionary<string?, double?>();
-            Queue1WaitingTime = new Dictionary<string?, double?>();
-            Queue2WaitingTime = new Dictionary<string?, double?>();
-
+            
             Thread t2 = new Thread(new ThreadStart(() =>
                {
                   
                    if (IsFCFS == true)
                    {
+                      
+                       FCFSchart = new();
+                       FCFSWaitingTime = new Dictionary<string?, double?>();
+                       
                        FCFS(_processes);
                    }
                    if(IsRR == true) {
+                       
+                       RRchart = new();
+                       RRWaitingTime = new Dictionary<string?, double?>();
                        RoundRobin(_processes, quantom);
                    }
 
                    if (IsSJF == true)
                    {
+                       SJFChart = new();
+                       SJFWaitingTime = new Dictionary<string?, double?>();
                        SJF(_processes);
                    }
                    if (IsSRT == true)
                    {
+                       SRTChart = new();
+                       SRTWaitingTime = new Dictionary<string?, double?>();
                        SRT(_processes);
                    }
                    if(IsHRRN == true)
                    {
+                       HRRNchart = new();
+                       HRRNWaitingTime = new Dictionary<string?, double?>();
                        HRRN(_processes);
                    }
 
                    if(IsPriority == true)
                    {
+                       PriorityChart = new();
+                       PriorityWaitingTime = new Dictionary<string?, double?>();
                        PriorityScheduling(_processes);
                    }
 
                    if (IsLottery == true)
                    {
+                       LotteryChart = new();
+                       LotteryWaitingTime = new Dictionary<string?, double?>();
                        LotteryScheduling(_processes);
                    }
 
@@ -150,82 +156,88 @@ namespace OS_Calculator.MVVM.ViewModels
         }
 
 
-        private void GenerateTimeline()
-        {
-            int? currentTime = 0;
-            int i;
-            for (i = 0; i < _processes.Count; i++)
-            {
-                chart[i] = new FCFSChart();
-                chart[i].FCFSTimeLine = currentTime.ToString();
-                currentTime += _processes[i].ProcessUnits;
-                chart[i].FCFSUnitsX = _processes[i].ProcessUnits10X;
-
-
-            }
-            chart[i] = new FCFSChart();
-            chart[i].FCFSTimeLine = currentTime.ToString(); // Add end time
-        }
+       
 
         void AverageWaitingTime()
         {
             double? averageWaitingTime = 0;
             //for fcfs
-            foreach (var fc in FCFSWaitingTime)
+            if (IsFCFS)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in FCFSWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / FCFSWaitingTime.Count;
+                FCFSWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / FCFSWaitingTime.Count;
-            FCFSWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for round robin
-            foreach (var fc in RRWaitingTime)
+            if (IsRR)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in RRWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / RRWaitingTime.Count;
+                RRWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / RRWaitingTime.Count;
-            RRWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for sjf
-            foreach (var fc in SJFWaitingTime)
+            if (IsSJF)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in SJFWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / SJFWaitingTime.Count;
+                SJFWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / SJFWaitingTime.Count;
-            SJFWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for srt
-            foreach (var fc in SRTWaitingTime)
+            if (IsSRT)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in SRTWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / SRTWaitingTime.Count;
+                SRTWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / SRTWaitingTime.Count;
-            SRTWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for hrrn
-            foreach (var fc in HRRNWaitingTime)
+            if (IsHRRN)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in HRRNWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / HRRNWaitingTime.Count;
+                HRRNWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / HRRNWaitingTime.Count;
-            HRRNWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for priority
-            foreach (var fc in PriorityWaitingTime)
+            if (IsPriority)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in PriorityWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / PriorityWaitingTime.Count;
+                PriorityWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / PriorityWaitingTime.Count;
-            PriorityWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for lottery
-            foreach (var fc in LotteryWaitingTime)
+            if (IsLottery)
             {
-                averageWaitingTime += fc.Value;
+                foreach (var fc in LotteryWaitingTime)
+                {
+                    averageWaitingTime += fc.Value;
+                }
+                averageWaitingTime = averageWaitingTime / LotteryWaitingTime.Count;
+                LotteryWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
+                averageWaitingTime = 0;
             }
-            averageWaitingTime = averageWaitingTime / LotteryWaitingTime.Count;
-            LotteryWaitingTime.Add("Average Waiting Time: ", averageWaitingTime);
-            averageWaitingTime = 0;
             //for mlq
             /* foreach (var fc in MLQWaitingTime)
              {
@@ -248,38 +260,40 @@ namespace OS_Calculator.MVVM.ViewModels
         {
             //_completionTime.Clear();
             proc = proc.OrderBy(p => p.ArrivalTime).ToList();
-            string keyName;
+            
             int? currentTime = 0;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
             int? WaitingTime = 0;
-            int index = 0;
+            //int index = 0;
 
             foreach (var process in proc)
             {
-                index++;
+                //index++;
                 if (currentTime < process.ArrivalTime)
                 {
+                    FCFSchart.Add(new("NT", "#ffffff", currentTime, "#000000",(process.ArrivalTime - currentTime) * 10));
                     currentTime = process.ArrivalTime;
                 }
 
                 CompletionTime = currentTime + process.ProcessUnits;
                 TurnaroundTime = CompletionTime - process.ArrivalTime;
                 WaitingTime = TurnaroundTime - process.ProcessUnits;
-
+                FCFSchart.Add(new(process.ProcessName, process.ProcessColor, currentTime, "#000000", process.ProcessUnits10X));
                 currentTime += process.ProcessUnits;
-                keyName = $"P{index} Waiting Time: ";
-                FCFSWaitingTime.Add(keyName, WaitingTime);
-                Queue1WaitingTime.Add(keyName, WaitingTime);
+                //keyName = $"P{index} Waiting Time: ";
+               
+                FCFSWaitingTime.Add(process.ProcessName, WaitingTime);
+                Queue1WaitingTime.Add(process.ProcessName, WaitingTime);
                 _completionTime.Add(CompletionTime);
             }
-
+            FCFSchart.Add(new("", "Transparent", currentTime, "#ffffff",0));
         }
 
         void RoundRobin(List<Processes> processes, int timeQuantum)
         {
             //_completionTime.Clear();
-            string keyName;
+            //string keyName;
             int? currentTime = 0;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
@@ -295,79 +309,147 @@ namespace OS_Calculator.MVVM.ViewModels
             int nextArrivalIndex = 0;
             // Continue until all processes are completed
 
-            while (readyQueue.Any() || nextArrivalIndex < processes.Count)
+            while (readyQueue.Any() || suspendedQueue.Any() ||nextArrivalIndex < processes.Count)
             {
-            ChangeRound:
+            
                 // Add all processes that have arrived by current time to the ready queue
                 while (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
                 {
                     readyQueue.Enqueue(processes[nextArrivalIndex]);
                     nextArrivalIndex++;
                 }
+
                 if (readyQueue.Any())
                 {
                     // Get the next process from the ready queue
                     Processes currentProcess = readyQueue.Dequeue();
 
                     // Find the index of the current process
-                    int processIndex = processes.IndexOf(currentProcess);
+                    int Pindex = processes.IndexOf(currentProcess);
 
                     // Calculate the time slice for the current process
-                    int timeSlice = Math.Min(timeQuantum, (int)remainingBurstTimes[processIndex]);
-                    string p = $"P{processIndex + 1}";
-                    RRchart.Add(new Tuple<string?, string?, int?, string>(p, currentProcess.ProcessColor, currentTime, "#000000"));
+                    int timeSlice = Math.Min(timeQuantum, (int)remainingBurstTimes[Pindex]);
+
+                    RRchart.Add(new Tuple<string?, string?, int?, string>(currentProcess.ProcessName, currentProcess.ProcessColor, currentTime, "#000000"));
                     // Update the current time
                     currentTime += timeSlice;
 
                     // Reduce the remaining burst time
-                    remainingBurstTimes[processIndex] -= timeSlice;
+                    remainingBurstTimes[Pindex] -= timeSlice;
 
                     // If the process is completed
-                    if (remainingBurstTimes[processIndex] == 0)
+                    if (remainingBurstTimes[Pindex] == 0)
 
                     {
                         CompletionTime = currentTime;
                         TurnaroundTime = CompletionTime - currentProcess.ArrivalTime;
                         WaitingTime = TurnaroundTime - currentProcess.ProcessUnits;
-                        keyName = $"P{processIndex + 1} Waiting Time: ";
-                        RRWaitingTime.Add(keyName, WaitingTime);
+                        //keyName = $"P{processIndex + 1} Waiting Time: ";
+                        RRWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
 
                         //Queue1WaitingTime.Add(keyName, WaitingTime);
                         _completionTime.Add(CompletionTime);
                         if (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
                         {
+                            
                             while (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
                             {
                                 readyQueue.Enqueue(processes[nextArrivalIndex]);
                                 nextArrivalIndex++;
                             }
                         }
-                        else if (suspendedQueue.Any())
-                        {
-                            readyQueue.Enqueue(suspendedQueue.Dequeue());
-                        }
+                       
                     }
                     else
                     {
                         if (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
                         {
+                           
                             while (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
                             {
                                 readyQueue.Enqueue(processes[nextArrivalIndex]);
                                 nextArrivalIndex++;
                             }
                             suspendedQueue.Enqueue(currentProcess);
-                            goto ChangeRound;
+                            
                         }
                         // If the process is not completed, add it back to the ready queue
-                        readyQueue.Enqueue(currentProcess);
+                        else
+                        {
+                            suspendedQueue.Enqueue(currentProcess);
+                        }
+                    }
+                }
+                else if (suspendedQueue.Any())
+                {
+                    Processes currentProcess = suspendedQueue.Dequeue();
+
+                    // Find the index of the current process
+                    int Pindex = processes.IndexOf(currentProcess);
+
+                    // Calculate the time slice for the current process
+                    int timeSlice = Math.Min(timeQuantum, (int)remainingBurstTimes[Pindex]);
+
+                    RRchart.Add(new Tuple<string?, string?, int?, string>(currentProcess.ProcessName, currentProcess.ProcessColor, currentTime, "#000000"));
+                    // Update the current time
+                    currentTime += timeSlice;
+
+                    // Reduce the remaining burst time
+                    remainingBurstTimes[Pindex] -= timeSlice;
+
+                    // If the process is completed
+                    if (remainingBurstTimes[Pindex] == 0)
+
+                    {
+                        CompletionTime = currentTime;
+                        TurnaroundTime = CompletionTime - currentProcess.ArrivalTime;
+                        WaitingTime = TurnaroundTime - currentProcess.ProcessUnits;
+                        //keyName = $"P{processIndex + 1} Waiting Time: ";
+                        RRWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
+
+                        //Queue1WaitingTime.Add(keyName, WaitingTime);
+                        _completionTime.Add(CompletionTime);
+                        if (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
+                        {
+
+                            while (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
+                            {
+                                readyQueue.Enqueue(processes[nextArrivalIndex]);
+                                nextArrivalIndex++;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
+                        {
+
+                            while (nextArrivalIndex < processes.Count && processes[nextArrivalIndex].ArrivalTime <= currentTime)
+                            {
+                                readyQueue.Enqueue(processes[nextArrivalIndex]);
+                                nextArrivalIndex++;
+                            }
+                            suspendedQueue.Enqueue(currentProcess);
+
+                        }
+                        // If the process is not completed, add it back to the ready queue
+                        else
+                        {
+                            suspendedQueue.Enqueue(currentProcess);
+                        }
                     }
                 }
                 else
                 {
-                    // If no process is in the ready queue, advance time to the next process arrival
+                // If no process is in the ready queue, advance time to the next process arrival
+                Repeat:
+                    RRchart.Add(new("NT", "#ffffff", currentTime, "#000000"));
+                    currentTime++;
 
-                    currentTime = processes[nextArrivalIndex].ArrivalTime;
+                    if (currentTime < processes[nextArrivalIndex].ArrivalTime)
+                        goto Repeat;
+                    //currentTime = processes[nextArrivalIndex].ArrivalTime;
 
                 }
             }
@@ -377,12 +459,12 @@ namespace OS_Calculator.MVVM.ViewModels
 
         void SJF(List<Processes> processes)
         {
-            string keyName;
+            //string keyName;
             int? currentTime = 0;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
             int? WaitingTime = 0;
-            int index = 0;
+            //int index = 0;
             // Sort processes by arrival time
             processes = processes.OrderBy(p => p.ArrivalTime).ToList();
 
@@ -411,9 +493,9 @@ namespace OS_Calculator.MVVM.ViewModels
                 if (shortestIndex != -1)
                 {
                     Processes currentProcess = processes[shortestIndex];
-                    index = processes.IndexOf(currentProcess);
-                    string Pname = $"P{index + 1}";
-                    SJFChart.Add(new(Pname, currentProcess.ProcessColor, currentTime, "#000000", currentProcess.ProcessUnits10X));
+                    //index = processes.IndexOf(currentProcess);
+                    //string Pname = $"P{index + 1}";
+                    SJFChart.Add(new(currentProcess.ProcessName, currentProcess.ProcessColor, currentTime, "#000000", currentProcess.ProcessUnits10X));
                     currentTime += currentProcess.ProcessUnits;
 
                     CompletionTime = currentTime;
@@ -424,14 +506,25 @@ namespace OS_Calculator.MVVM.ViewModels
 
                     isCompleted[shortestIndex] = true;
                     completedProcesses++;
-                    keyName = $"P{index + 1} Waiting Time: ";
+                    //keyName = $"P{index + 1} Waiting Time: ";
 
-                    SJFWaitingTime.Add(keyName, WaitingTime);
+                    SJFWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
 
                 }
                 else
                 {
-                    currentTime++;
+                    int index = 0;
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (processes[i].ArrivalTime > currentTime && !isCompleted[i])
+                        {
+                            index = i;
+                            SJFChart.Add(new("NT", "#ffffff", currentTime, "#000000", (processes[i].ArrivalTime - currentTime) * 10));
+                            goto AddToCurrentTime;
+                        }
+                    }
+                    AddToCurrentTime:
+                    currentTime = processes[index].ArrivalTime;
                 }
             }
             SJFChart.Add(new("", "Transparent", currentTime, "#ffffff", 0));
@@ -439,7 +532,7 @@ namespace OS_Calculator.MVVM.ViewModels
 
         void SRT(List<Processes> processes)
         {
-            string keyName;
+            //string keyName;
             int? currentTime = 0;
 
             int n = processes.Count;
@@ -477,8 +570,8 @@ namespace OS_Calculator.MVVM.ViewModels
 
                 if (currentProcess != null)
                 {
-                    string Pname = $"P{currentProcess.ProcessNumber}";
-                    SRTChart.Add(new(Pname, currentProcess.ProcessColor, currentTime, "#000000"));
+                    //string Pname = $"P{currentProcess.ProcessNumber}";
+                    SRTChart.Add(new(currentProcess.ProcessName, currentProcess.ProcessColor, currentTime, "#000000"));
                     currentTime++;
                     currentProcess.SRTRemainingTime--;
 
@@ -488,13 +581,18 @@ namespace OS_Calculator.MVVM.ViewModels
                         CompletionTime = currentTime;
                         TurnaroundTime = CompletionTime - currentProcess.ArrivalTime;
                         WaitingTime = TurnaroundTime - currentProcess.ProcessUnits;
-                        keyName = $"P{currentProcess.ProcessNumber} Waiting Time: ";
-                        SRTWaitingTime.Add(keyName, WaitingTime);
+                        //keyName = $"P{currentProcess.ProcessNumber} Waiting Time: ";
+                        SRTWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
                     }
                 }
                 else
                 {
-                    currentTime++;
+                
+                    SRTChart.Add(new("NT", "#ffffff", currentTime, "#000000"));
+                    currentTime ++;
+
+                    
+                    
                 }
 
 
@@ -506,12 +604,12 @@ namespace OS_Calculator.MVVM.ViewModels
         }
         void HRRN(List<Processes> processes)
         {
-            string keyName;
+            //string keyName;
             int? currentTime = 0;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
             int? WaitingTime = 0;
-            int index = 0;
+            //int index = 0;
 
             int n = processes.Count;
             processes = processes.OrderBy(p => p.ArrivalTime).ToList();
@@ -542,9 +640,9 @@ namespace OS_Calculator.MVVM.ViewModels
                 if (selectedProcessIndex != -1)
                 {
                     Processes currentProcess = processes[selectedProcessIndex];
-                    HRRNchart.Add(new("P" + currentProcess.ProcessNumber, currentProcess.ProcessUnits10X, currentTime, currentProcess.ProcessColor, "#000000"));
+                    HRRNchart.Add(new(currentProcess.ProcessName, currentProcess.ProcessUnits10X, currentTime, currentProcess.ProcessColor, "#000000"));
                     currentTime += currentProcess.ProcessUnits;
-                    index = processes.IndexOf(currentProcess);
+                    //index = processes.IndexOf(currentProcess);
 
                     CompletionTime = currentTime;
                     TurnaroundTime = CompletionTime - currentProcess.ArrivalTime;
@@ -553,12 +651,23 @@ namespace OS_Calculator.MVVM.ViewModels
                     isCompleted[selectedProcessIndex] = true;
                     completedProcesses++;
 
-                    keyName = $"P{index + 1} Waiting Time: ";
-                    HRRNWaitingTime.Add(keyName, WaitingTime);
+                    //keyName = $"P{index + 1} Waiting Time: ";
+                    HRRNWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
                 }
                 else
                 {
-                    currentTime++;
+                    int index = 0;
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (processes[i].ArrivalTime > currentTime && !isCompleted[i])
+                        {
+                            index = i;
+                            HRRNchart.Add(new("NT", (processes[i].ArrivalTime - currentTime) * 10, currentTime, "#ffffff", "#000000"));
+                            goto AddCurrent;
+                        }
+                    }
+                    AddCurrent:
+                    currentTime = processes[index].ArrivalTime;
                 }
             }
             HRRNchart.Add(new("", 0, currentTime, "Transparent", "#ffffff"));
@@ -566,12 +675,12 @@ namespace OS_Calculator.MVVM.ViewModels
 
         void PriorityScheduling(List<Processes> processes)
         {
-            string keyName;
+            //string keyName;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
             int? WaitingTime = 0;
             int n = processes.Count;
-            int index = 0;
+            //int index = 0;
             processes = processes.OrderBy(p => p.ArrivalTime).ToList();
 
             int? currentTime = 0;
@@ -595,9 +704,9 @@ namespace OS_Calculator.MVVM.ViewModels
                 if (highestPriorityIndex != -1)
                 {
                     Processes currentProcess = processes[highestPriorityIndex];
-                    PriorityChart.Add(new("P" + currentProcess.ProcessNumber, currentProcess.ProcessUnits10X, currentTime, currentProcess.ProcessColor, "#000000"));
+                    PriorityChart.Add(new(currentProcess.ProcessName, currentProcess.ProcessUnits10X, currentTime, currentProcess.ProcessColor, "#000000"));
                     currentTime += currentProcess.ProcessUnits;
-                    index = processes.IndexOf(currentProcess);
+                    //index = processes.IndexOf(currentProcess);
 
                     CompletionTime = currentTime;
                     TurnaroundTime = CompletionTime - currentProcess.ArrivalTime;
@@ -606,12 +715,23 @@ namespace OS_Calculator.MVVM.ViewModels
                     isCompleted[highestPriorityIndex] = true;
                     completedProcesses++;
 
-                    keyName = $"P{index + 1} Waiting Time: ";
-                    PriorityWaitingTime.Add(keyName, WaitingTime);
+                    //keyName = $"P{index + 1} Waiting Time: ";
+                    PriorityWaitingTime.Add(currentProcess.ProcessName, WaitingTime);
                 }
                 else
                 {
-                    currentTime++;
+                    int index = 0;
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (processes[i].ArrivalTime > currentTime && !isCompleted[i])
+                        {
+                            index = i;
+                            PriorityChart.Add(new("NT", (processes[i].ArrivalTime - currentTime) * 10, currentTime, "#ffffff", "#000000"));
+                            goto AddCurrent;
+                        }
+                    }
+                AddCurrent:
+                    currentTime = processes[index].ArrivalTime;
                 }
             }
             PriorityChart.Add(new("", 0, currentTime, "Transparent", "#ffffff"));
@@ -746,7 +866,7 @@ namespace OS_Calculator.MVVM.ViewModels
             int n = processes.Count;
 
             int? WaitingTime = 0;
-            string keyName;
+            //string keyName;
             int? CompletionTime = 0;
             int? TurnaroundTime = 0;
             int? RemainingTime = 0;
@@ -763,6 +883,7 @@ namespace OS_Calculator.MVVM.ViewModels
 
                 if (availableProcesses.Count == 0)
                 {
+                    LotteryChart.Add(new("NT", time, "#ffffff", "#000000"));
                     time++;
                     continue;
                 }
@@ -788,7 +909,7 @@ namespace OS_Calculator.MVVM.ViewModels
                 
                 // Execute the selected process for one unit of time
                 selectedProcess.SRTRemainingTime--;
-                LotteryChart.Add(new("P" + selectedProcess.ProcessNumber, time, selectedProcess.ProcessColor, "#000000"));
+                LotteryChart.Add(new(selectedProcess.ProcessName, time, selectedProcess.ProcessColor, "#000000"));
                 time++;
 
                 // If process is completed
@@ -798,7 +919,7 @@ namespace OS_Calculator.MVVM.ViewModels
                     TurnaroundTime = CompletionTime - selectedProcess.ArrivalTime;
                     WaitingTime = TurnaroundTime - selectedProcess.ProcessUnits;
                     completedProcesses++;
-                    LotteryWaitingTime.Add("P" + selectedProcess.ProcessNumber+" Waiting Time: ", WaitingTime);
+                    LotteryWaitingTime.Add(selectedProcess.ProcessName+" Waiting Time: ", WaitingTime);
                 }
             }
 

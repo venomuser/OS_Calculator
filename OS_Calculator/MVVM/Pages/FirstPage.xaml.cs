@@ -11,8 +11,7 @@ public partial class FirstPage : ContentPage
 	public bool HRRN {  get; set; }
 	public bool Priority {  get; set; }
 	public bool Lottery {  get; set; }
-	public bool Paging { get; set; }
-	public bool Segmentation { get; set; }
+
 	public bool FirstFit { get; set; }
 	public bool NextFit { get; set; }
 	public bool BestFit { get; set; }
@@ -29,14 +28,14 @@ public partial class FirstPage : ContentPage
         this.HRRN = false;
         this.Priority = false;
         this.Lottery = false;
-        this.Paging = false;
+     
         this.FirstFit = false;
         this.NextFit = false;
         this.BestFit = false;
         this.WorstFit = false;
         this.StaticPart = false;
         this.DynamicPart = false;
-        this.Segmentation = false;
+      
 		BindingContext = this;
     }
 
@@ -50,8 +49,7 @@ public partial class FirstPage : ContentPage
 		CheckList.Add(this.HRRN);
 		CheckList.Add(this.Priority);
 		CheckList.Add(this.Lottery);
-		CheckList.Add(this.Paging);
-		CheckList.Add(this.Segmentation);
+		
 		CheckList.Add(this.FirstFit);
 		CheckList.Add(this.NextFit);
 		CheckList.Add(this.BestFit);
@@ -72,14 +70,14 @@ public partial class FirstPage : ContentPage
 			CustomizationController.HRRN = this.HRRN;
 			CustomizationController.Priority = this.Priority;
 			CustomizationController.Lottery = this.Lottery;
-			CustomizationController.Paging = this.Paging;
+			
 			CustomizationController.FirstFit = this.FirstFit;
 			CustomizationController.NextFit = this.NextFit;
 			CustomizationController.BestFit = this.BestFit;
 			CustomizationController.WorstFit = this.WorstFit;
 			CustomizationController.FixedPartitioning = this.StaticPart;
 			CustomizationController.VariablePartitioning = this.DynamicPart;
-			CustomizationController.Segmentation = this.Segmentation;
+			
 
 			Navigation.PushModalAsync(new MainPage());
 		}
