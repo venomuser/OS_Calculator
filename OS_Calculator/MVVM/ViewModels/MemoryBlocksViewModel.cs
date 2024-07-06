@@ -20,6 +20,10 @@ namespace OS_Calculator.MVVM.ViewModels
         public MemoryBlocksViewModel(List<Processes> processes)
         {
             _Processes = processes;
+            for (int i = 0; i < _Processes.Count; i++)
+            {
+                _Processes[i].ProcessNumber = i + 1;
+            }
         }
 
         public ICommand NextCommand => new Command(nextCommand);

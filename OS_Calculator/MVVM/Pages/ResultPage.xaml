@@ -8,7 +8,7 @@
     <ContentPage Title="CPU Scheduling"  
                  xmlns:converters="clr-namespace:OS_Calculator.MVVM.Converters"
                  xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
-                 >
+                 x:Name="CpuContentPage">
         
         <ContentPage.Resources>
             <ResourceDictionary>
@@ -528,8 +528,150 @@
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>
-    <ContentPage Title="RAM Allocation">
-        <ScrollView FlowDirection="LeftToRight"></ScrollView>
+    <ContentPage Title="RAM Allocation" x:Name="RamContentPage">
+        <ScrollView VerticalOptions="Center" HorizontalOptions="Center" FlowDirection="LeftToRight">
+
+           
+            <VerticalStackLayout Padding="20" Spacing="50">
+                <Label Text="Processes Block Sizes:" FontSize="Medium"/>
+                <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding _processes}">
+                   
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding BlockSizesMB}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <HorizontalStackLayout Spacing="5">
+                                        <Label Text="{Binding .}" FontSize="Medium"/>
+                                        <Label Text="|" FontSize="Medium"/>
+                                        </HorizontalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+                </ScrollView>
+                <Label Text="First Fit" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsFF}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _firstFitBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="FirstFitdataGrid" IsVisible="{Binding IsFF}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Initial" PropertyName="Initial" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Blocks" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Status" PropertyName="BlockColor" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsFF}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding Failed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsFF}"/>
+
+                <Label Text="Next Fit" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsNF}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _nextFitBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="NextFitdataGrid" IsVisible="{Binding IsNF}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Initial" PropertyName="Initial" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Blocks" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Status" PropertyName="BlockColor" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsNF}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding Failed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsNF}"/>
+
+                <Label Text="Best Fit" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsBF}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _bestFitBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="BestFitdataGrid" IsVisible="{Binding IsBF}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Initial" PropertyName="Initial" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Blocks" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Status" PropertyName="BlockColor" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsBF}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding Failed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsBF}"/>
+
+                <Label Text="Worst Fit" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsWF}"/>
+
+                <dg:DataGrid ItemsSource="{Binding _worstFitBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="WorstFitdataGrid" IsVisible="{Binding IsWF}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Initial" PropertyName="Initial" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Blocks" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Status" PropertyName="BlockColor" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsWF}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding Failed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsWF}"/>
+                <Label Text="Fixed Partitioning" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsStaticP}"/>
+
+                <ScrollView Orientation="Horizontal"  IsVisible="{Binding IsStaticP}">
+                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding _processes}" Spacing="40">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                            
+                            <HorizontalStackLayout Spacing="2">
+                        <Label Text="{Binding ProcessName}" FontSize="Medium" />
+                        <Label Text=" Size: " FontSize="Medium" />
+                        <Label Text="{Binding ProcessSize}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            
+                        </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+               </ScrollView>
+
+        <dg:DataGrid ItemsSource="{Binding _staticBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="StaticPartdataGrid" IsVisible="{Binding IsStaticP}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Status" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Blocks" PropertyName="AllocatedBlock" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsStaticP}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding staticFailed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsStaticP}"/>
+
+                <Label Text="Variable Partitioning" FontSize="Large" FontFamily="Offside" Margin="20,50,0,100" IsVisible="{Binding IsDynamicP}"/>
+
+                <ScrollView Orientation="Horizontal"  IsVisible="{Binding IsDynamicP}">
+                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding _processes}" Spacing="40" >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <HorizontalStackLayout Spacing="2">
+                                    <Label Text="{Binding ProcessName}" FontSize="Medium" />
+                                    <Label Text=" Size: " FontSize="Medium" />
+                                    <Label Text="{Binding ProcessSize}" FontSize="Medium" />
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+                <dg:DataGrid ItemsSource="{Binding dynamicBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="DynamicPartdataGrid" IsVisible="{Binding IsDynamicP}">
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Processes" PropertyName="ProcessName" Width="90" SortingEnabled="False"/>
+                        <dg:DataGridColumn Title="Process Size" PropertyName="ProcessSize" Width="90" SortingEnabled="False"/>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
+                <HorizontalStackLayout Spacing="5" IsVisible="{Binding IsDynamicP}">
+                    <Label Text="Failed:" FontSize="Medium"/>
+                    <Label Text="{Binding dynamicFailed}" FontSize="Medium"/>
+                </HorizontalStackLayout>
+                <BoxView Color="Black" BackgroundColor="Black" HeightRequest="4" MaximumWidthRequest="1000" IsVisible="{Binding IsDynamicP}"/>
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage>
     <ContentPage Title="Ultimate Result">
         <VerticalStackLayout FlowDirection="LeftToRight">

@@ -11,7 +11,7 @@ public partial class ResultPage : TabbedPage
 {
     public int QuantomTime { get; set; }
     protected List<Processes> _processes { get; set; }
-    public ResultPage(List<Processes> processes)
+    public ResultPage(List<Processes> processes, Memory memory = null)
     {
         _processes = processes;
         InitializeComponent();
@@ -55,7 +55,8 @@ public partial class ResultPage : TabbedPage
             LotterydataGrid.IsEnabled = false;
         }
 
-
+        //if memory algorithms selected, then this should happen
+        RamContentPage.BindingContext = new MemoryOperationsViewModel(processes, memory);
     }
 
     protected override bool OnBackButtonPressed()
@@ -66,7 +67,7 @@ public partial class ResultPage : TabbedPage
     private void btnShowResults_Clicked(object sender, EventArgs e)
     {
            
-            BindingContext = new OperationsViewModel(QuantomTime, _processes);
+            CpuContentPage.BindingContext = new CpuOperationsViewModel(QuantomTime, _processes);
     }
 
     private void HomeButton_Clicked(object sender, EventArgs e)

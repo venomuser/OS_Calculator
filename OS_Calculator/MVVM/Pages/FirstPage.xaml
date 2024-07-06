@@ -11,7 +11,7 @@
             HorizontalOptions="Center" Margin="0,0,0,100" />
 
         <Label Text="Choose your options:" FontSize="Medium" Margin="0,0,0,20"/>
-        <Label Text="CPU Scheduling Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,10"/>
+        <Label Text="CPU Scheduling Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,20"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -23,6 +23,14 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -42,9 +50,23 @@
                 <Label Text="Priority" Grid.Row="5" Grid.Column="1" FontSize="Medium" />
                 <CheckBox IsChecked="{Binding Lottery}" Margin="0,0,0,30" Grid.Row="6" Grid.Column="0"/>
                 <Label Text="Lottery" Grid.Row="6" Grid.Column="1" FontSize="Medium" />
-                <Label Text="Memory Allocation Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
-                <CheckBox IsChecked="{Binding Paging}" Margin="0,0,0,50" Grid.Row="8" Grid.Column="0"/>
-                <Label Text="Paging" Grid.Row="8" Grid.Column="1" FontSize="Medium" />
+                <Label Text="Memory Allocation Algorithms" FontSize="Medium" FontFamily="Offside" Margin="0,0,0,30" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <CheckBox IsChecked="{Binding FirstFit}"  Grid.Row="8" Grid.Column="0"/>
+                <Label Text="First Fit" Grid.Row="8" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding NextFit}"  Grid.Row="9" Grid.Column="0"/>
+                <Label Text="Next Fit" Grid.Row="9" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding BestFit}"  Grid.Row="10" Grid.Column="0"/>
+                <Label Text="Best Fit" Grid.Row="10" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding WorstFit}"  Grid.Row="11" Grid.Column="0"/>
+                <Label Text="Worst Fit" Grid.Row="11" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding StaticPart}"  Grid.Row="12" Grid.Column="0"/>
+                <Label Text="Fixed Partitioning" Grid.Row="12" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding DynamicPart}"  Grid.Row="13" Grid.Column="0"/>
+                <Label Text="Variable Partitioning" Grid.Row="13" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding Paging}"  Grid.Row="14" Grid.Column="0"/>
+                <Label Text="Paging" Grid.Row="14" Grid.Column="1" FontSize="Medium" />
+                <CheckBox IsChecked="{Binding Segmentation}" Margin="0,0,0,50" Grid.Row="15" Grid.Column="0"/>
+                <Label Text="Segmentation" Grid.Row="15" Grid.Column="1" FontSize="Medium" />
             </Grid>
             <Button Text="Confirm" x:Name="btnConfirmCustom" Clicked="btnConfirmCustom_Clicked" BackgroundColor="Red" WidthRequest="200"></Button>
     </VerticalStackLayout>

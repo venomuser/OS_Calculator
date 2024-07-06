@@ -86,5 +86,15 @@ namespace OS_Calculator.MVVM.Models
 		public bool IsPriority { get; } = CustomizationController.Priority;
 		public bool IsLottery { get; } = CustomizationController.Lottery;
 
+		public int? ProcessSize { get
+			{
+				int? size = 0;
+				foreach (var block in BlockSizesMB)
+				{
+					size += block;
+				}
+				return size;
+			} }
+
 	}
 }

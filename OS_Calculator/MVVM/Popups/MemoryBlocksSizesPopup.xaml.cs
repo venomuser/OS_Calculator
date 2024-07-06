@@ -48,20 +48,21 @@ public partial class MemoryBlocksSizesPopup : Popup
                     else
                     {
                         entryValues.Add(Convert.ToDouble(entry.Text));
-                        foreach (var block in entryValues)
-                        {
-                            size += block;
-                        }
-                        if (size > _memory.MemorySize)
-                        {
-                            lblError.Text = "Error! Blocks Sizes are bigger than memory size!";
-                            lblError.IsVisible = true;
-                            goto Finish;
-                        }
+                        
                     }
 
 
                 }
+            }
+            foreach (var block in entryValues)
+            {
+                size += block;
+            }
+            if (size > _memory.MemorySize)
+            {
+                lblError.Text = "Error! Blocks Sizes are bigger than memory size!";
+                lblError.IsVisible = true;
+                goto Finish;
             }
             // -------------------------- adding to the list ----------------------------------------
             _memory.BlockStorage.Clear();
@@ -73,7 +74,7 @@ public partial class MemoryBlocksSizesPopup : Popup
             
             Close();
             
-            App.Current.MainPage = new NavigationPage(new ResultPage(Processes));
+            App.Current.MainPage = new NavigationPage(new ResultPage(Processes,_memory));
         //App.Current.MainPage.Navigation.PushModalAsync(new ResultPage(Processes));
 
         Finish:;

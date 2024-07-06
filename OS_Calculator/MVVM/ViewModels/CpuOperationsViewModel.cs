@@ -14,7 +14,7 @@ using System.Windows.Input;
 namespace OS_Calculator.MVVM.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class OperationsViewModel
+    public class CpuOperationsViewModel
     {
 
         private readonly int quantom;
@@ -54,7 +54,7 @@ namespace OS_Calculator.MVVM.ViewModels
 
         
 
-        public OperationsViewModel(int Quantom, List<Processes> processes)
+        public CpuOperationsViewModel(int Quantom, List<Processes> processes)
         {
             IsFCFS = CustomizationController.FCFS;
             IsRR = CustomizationController.RoundRobin;
