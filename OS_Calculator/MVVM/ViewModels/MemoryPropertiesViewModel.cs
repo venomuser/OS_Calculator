@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
+using OS_Calculator.Common;
 using OS_Calculator.MVVM.Models;
 using OS_Calculator.MVVM.Pages;
 using OS_Calculator.MVVM.Popups;
@@ -7,6 +8,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,7 +61,13 @@ namespace OS_Calculator.MVVM.ViewModels
                 }
 
                 
-
+                if(CustomizationController.FixedPartitioning == true || CustomizationController.VariablePartitioning == true)
+                {
+                    if(CustomizationController.FirstFit == false && CustomizationController.NextFit == false && CustomizationController.BestFit == false && CustomizationController.WorstFit == false)
+                    {
+                        App.Current.MainPage = new NavigationPage(new ResultPage(_Processes,memory));
+                    }
+                }
                 page.ShowPopup(new MemoryBlocksSizesPopup(memory, _Processes));
                 
             }
