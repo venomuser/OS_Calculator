@@ -13,7 +13,6 @@ namespace OS_Calculator
             
             builder
                 .UseMauiApp<App>()
-             
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
