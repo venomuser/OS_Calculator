@@ -54,10 +54,6 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FF0000" />
-		<MauiSplashScreen Include="Resources\Raw\oscalculator.svg">
-		  <Color>#FF0000</Color>
-		  <BaseSize>640,640</BaseSize>
-		</MauiSplashScreen>
 
 		<!-- Splash Screen -->
 		<!--<MauiSplashScreen Include="Resources\raw\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
@@ -75,13 +71,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Remove="Resources\Raw\oscalculator.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Remove="Resources\Fonts\Offside-Regular.ttf" />
-	  <None Remove="Resources\Images\loading.gif" />
-	  <None Remove="Resources\Raw\oscalculator.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

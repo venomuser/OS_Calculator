@@ -284,8 +284,8 @@ namespace OS_Calculator.MVVM.ViewModels
                 //keyName = $"P{index} Waiting Time: ";
                
                 FCFSWaitingTime.Add(process.ProcessName, WaitingTime);
-                Queue1WaitingTime.Add(process.ProcessName, WaitingTime);
-                _completionTime.Add(CompletionTime);
+                //Queue1WaitingTime.Add(process.ProcessName, WaitingTime);
+                //_completionTime.Add(CompletionTime);
             }
             FCFSchart.Add(new("", "Transparent", currentTime, "#ffffff",0));
         }

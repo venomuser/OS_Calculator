@@ -15,7 +15,7 @@
                 <converters:NumericConverter x:Key="NumericConverter" />
             </ResourceDictionary>
         </ContentPage.Resources>
-        <!--  <scheduler:SfScheduler x:Name="Scheduler" View="TimelineDay"/> -->
+        
         <ScrollView VerticalOptions="Center" HorizontalOptions="Center" FlowDirection="LeftToRight">
 
             <VerticalStackLayout Padding="20" Spacing="50">
@@ -41,7 +41,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="100" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <!-- Timeline labels -->
@@ -119,7 +119,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="100" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!-- Timeline labels -->
@@ -189,7 +189,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Timeline labels -->
@@ -259,7 +259,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Timeline labels -->
@@ -329,7 +329,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Timeline labels -->
@@ -401,7 +401,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Timeline labels -->
@@ -475,7 +475,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Timeline labels -->
