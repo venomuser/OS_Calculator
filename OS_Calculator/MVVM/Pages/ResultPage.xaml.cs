@@ -11,7 +11,7 @@ public partial class ResultPage : TabbedPage
 {
     public int QuantomTime { get; set; }
     protected List<Processes> _processes { get; set; }
-    public ResultPage(List<Processes> processes, Memory memory = null)
+    public ResultPage(List<Processes> processes, Memory? memory = null)
     {
         _processes = processes;
         InitializeComponent();

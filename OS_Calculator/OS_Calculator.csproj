@@ -116,4 +116,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<PropertyGroup>
+		<PublishTrimmed>true</PublishTrimmed>
+	</PropertyGroup>
+
 </Project>
