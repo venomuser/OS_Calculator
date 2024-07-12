@@ -95,8 +95,8 @@ namespace OS_Calculator.MVVM.ViewModels
             
             _completionTime = new List<int?>();
             
-            Thread t2 = new Thread(new ThreadStart(() =>
-               {
+            //Thread t2 = new Thread(new ThreadStart(() =>
+            //   {
                   
                    if (IsFCFS == true)
                    {
@@ -151,8 +151,8 @@ namespace OS_Calculator.MVVM.ViewModels
             //MLFQ(_processes, 3, new int[] { quantom, quantom / 2, (quantom / 2) / 2 });
             AverageWaitingTime();
                    
-            }));
-            t2.Start();
+            //}));
+            //t2.Start();
         }
 
 
