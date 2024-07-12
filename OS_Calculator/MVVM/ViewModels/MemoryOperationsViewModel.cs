@@ -263,6 +263,7 @@ namespace OS_Calculator.MVVM.ViewModels
             {
                 _staticBlock[i] = new StaticBlock();
                 _staticBlock[i].BlockSize = _blockSize;
+                _staticBlock[i].InitialBlockSize = _blockSize;
             }
 
             for (int i = 0; i < _processes.Count; i++)

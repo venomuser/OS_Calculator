@@ -632,6 +632,7 @@
 
         <dg:DataGrid ItemsSource="{Binding _staticBlock}" WidthRequest="300" HeightRequest="400" HorizontalOptions="Center" VerticalOptions="Center" x:Name="StaticPartdataGrid" IsVisible="{Binding IsStaticP}">
                     <dg:DataGrid.Columns>
+                        <dg:DataGridColumn Title="Initial" PropertyName="InitialBlockSize" Width="90" SortingEnabled="False"/>
                         <dg:DataGridColumn Title="Status" PropertyName="BlockSize" Width="90" SortingEnabled="False"/>
                         <dg:DataGridColumn Title="Blocks" PropertyName="AllocatedBlock" Width="90" SortingEnabled="False"/>
                     </dg:DataGrid.Columns>

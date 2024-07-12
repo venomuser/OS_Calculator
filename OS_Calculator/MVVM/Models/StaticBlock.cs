@@ -27,6 +27,15 @@ namespace OS_Calculator.MVVM.Models
 			}
 		}
 
+		private double? initialBlockSize;
+
+		public double? InitialBlockSize
+		{
+			get { return initialBlockSize; }
+			set { initialBlockSize = value; }
+		}
+
+
 
 	}
 }
