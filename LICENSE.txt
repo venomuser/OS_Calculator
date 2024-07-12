@@ -9,6 +9,7 @@ to use, copy, modify, merge, publish, distribute, sublicense, and to permit pers
 furnished to do so, subject to the following conditions:
 
 Also any commercial use of this project is not allowed.
+Publiushing entire project in any store (Google Play Store, App Store, Microsoft Store, etc) is not allowed.
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
