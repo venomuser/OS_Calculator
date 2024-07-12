@@ -68,6 +68,12 @@ public partial class ResultPage : TabbedPage
     {
            
             CpuContentPage.BindingContext = new CpuOperationsViewModel(QuantomTime, _processes);
+        FCFSGanttView.IsVisible = CustomizationController.FCFS;
+        RRGanttView.IsVisible = CustomizationController.RoundRobin;
+        RRWaitingTimeView.IsVisible = CustomizationController.RoundRobin;
+        SJFGanttView.IsVisible = CustomizationController.SJF;
+        HRRNGanttView.IsVisible = CustomizationController.HRRN;
+        PriorityGanttView.IsVisible = CustomizationController.Priority;
     }
 
     private void HomeButton_Clicked(object sender, EventArgs e)

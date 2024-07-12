@@ -24,17 +24,7 @@ namespace OS_Calculator.MVVM.Models
         {
             get
             {
-                int u;
-                if (processUnits < 5)
-                {
-                    u = 5;
-                    return u*10;
-                }
-                else
-                {
-                    return processUnits * 10;
-                }
-
+                return processUnits * 10;
             }
         }
 

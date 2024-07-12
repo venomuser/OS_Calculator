@@ -32,7 +32,7 @@
                         </dg:DataGrid.Columns>
                     </dg:DataGrid>
 
-                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsFCFS}" IsEnabled="{Binding IsFCFS}">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsFCFS}" x:Name="FCFSGanttView">
                 <Grid>
                     <!-- Define columns and rows for the grid -->
                     <Grid.ColumnDefinitions>
@@ -110,7 +110,7 @@
                     <Label Text="Quantum Time: " FontSize="Medium"/>
                     <Label Text="{Binding Quantom}" FontSize="Medium"/>
                 </HorizontalStackLayout>
-                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsRR}" IsEnabled="{Binding IsRR}">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsRR}" x:Name="RRGanttView">
                 <Grid>
                     <!-- Define columns and rows for the grid -->
                     <Grid.ColumnDefinitions>
@@ -155,7 +155,7 @@
                     </HorizontalStackLayout>
                 </Grid>
                 </ScrollView>
-                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding RRWaitingTime}" IsVisible="{Binding IsRR}" IsEnabled="{Binding IsRR}">
+                <VerticalStackLayout VerticalOptions="Center"  BindableLayout.ItemsSource="{Binding RRWaitingTime}" IsVisible="{Binding IsRR}" x:Name="RRWaitingTimeView">
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -180,7 +180,7 @@
                         <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
-                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsSJF}" IsEnabled="{Binding IsSJF}">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsSJF}" x:Name="SJFGanttView">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -320,7 +320,7 @@
                         <dg:DataGridColumn Title="Arrival Time" PropertyName="ArrivalTime" Width="90" SortingEnabled="False" />
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
-                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsHRRN}" IsEnabled="{Binding IsHRRN}">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsHRRN}" x:Name="HRRNGanttView">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
@@ -392,7 +392,7 @@
                         </dg:DataGrid.Columns>
                     </dg:DataGrid>
 
-                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsPriority}" IsEnabled="{Binding IsPriority}">
+                <ScrollView Orientation="Horizontal" IsVisible="{Binding IsPriority}" x:Name="PriorityGanttView">
                     <Grid>
                         <!-- Define columns and rows for the grid -->
                         <Grid.ColumnDefinitions>
